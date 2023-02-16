@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-typedef void (*t_fp)(int key, t_app *app);
+typedef void (*t_fp)(int key, t_app *app, t_window *win);
 
 static void	assign_functions(t_fp *functions)
 {
@@ -31,11 +31,11 @@ static int	valid_key(int key)
 	return (0);
 }
 
-void	switchboard(int key, t_app *param)
+void	switchboard(int key, t_app *app)
 {
 	static t_fp	functions[127];
 
 	assign_functions(functions);
 	if (valid_key(key))
-		functions[key](key, param);
+		functions[key](key, app, app->params->window_params);
 }

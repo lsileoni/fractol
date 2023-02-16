@@ -2,12 +2,11 @@
 #include "./libft/src/libft.h"
 #include "minilibx_opengl/mlx.h"
 
-t_complex divide(t_complex x,t_complex y){
-    t_complex z;
-    z.r = (x.r*y.r + x.i*y.i)/(y.r*y.r+y.i*y.i);
-    z.i = (x.i*y.r - x.r*y.i)/(y.r*y.r + y.i*y.i);
-    return z;
-}
+
+// int	render_frame(t_app *app)
+// {
+// 	return (0);
+// }
 
 void	define_hooks(t_app *app)
 {
@@ -16,6 +15,7 @@ void	define_hooks(t_app *app)
 	mlx_hook(app->win, 6, 1L<<6, mouse_pos, app);
 	mlx_hook(app->win, 4, 1L<<0, mouse_hook, app);
 	mlx_hook(app->win, 17, 1L<<0, close_window, app);
+	// mlx_loop_hook(app->mlx, render_frame, app);
 }
 
 int	main(int argc, char **argv)

@@ -3,6 +3,7 @@
 int thorn_check(int x, int y, t_params *p)
 {
 	t_set		*set;
+	t_window	*win;
 	t_complex	Z_orig;
 	t_complex	Z;
 	t_complex	C;
@@ -11,10 +12,11 @@ int thorn_check(int x, int y, t_params *p)
 	int		period;
 
 	set = p->set;
+	win = p->window_params;
 	Z.r = 0.7;
 	Z.i = 0.725;
-	C.r = p->min_width + (x * p->pixel_width);
-	C.i = p->min_height + (y * p->pixel_height);
+	C.r = win->min_width + (x * win->pixel_width);
+	C.i = win->min_height + (y * win->pixel_height);
 	Z_old.r = 0.0;
 	Z_old.i = 0.0;
 	period = 0;
@@ -42,15 +44,17 @@ int thorn_check(int x, int y, t_params *p)
 
 int julia_check(int x, int y, t_params *p)
 {
+	t_window		*win;
 	t_set			*set;
 	unsigned int	iter_max;
 
 	set = p->set;
+	win = p->window_params;
 	iter_max = p->iter_max;
-	set->z.i = p->min_height + (y * p->pixel_height);
-	set->z.r = p->min_width + (x * p->pixel_width);
-	set->c.i = p->min_height + (p->mouse_y * p->pixel_height);
-	set->c.r = p->min_width + (p->mouse_x * p->pixel_width);
+	set->z.i = win->min_height + (y * win->pixel_height);
+	set->z.r = win->min_width + (x * win->pixel_width);
+	set->c.i = win->min_height + (p->mouse_y * win->pixel_height);
+	set->c.r = win->min_width + (p->mouse_x * win->pixel_width);
 	set->z_s.r = set->z.r * set->z.r;
 	set->z_s.i = set->z.i * set->z.i;
 	while (fabs(set->z_s.r) < 40.0 && fabs(set->z_s.i) < 40.0 && iter_max)
@@ -67,16 +71,18 @@ int julia_check(int x, int y, t_params *p)
 int mandelbrot_check(int x, int y, t_params *p)
 {
 	t_set			*set;
+	t_window		*win;
 	unsigned int	iter_max;
 
 	set = p->set;
+	win = p->window_params;
 	set->z.r = 0.0;
 	set->z.i = 0.0;
 	set->z_s.r = 0.0;
 	set->z_s.i = 0.0;
 	iter_max = p->iter_max;
-	set->c.r = p->min_width + (x * p->pixel_width);
-	set->c.i = p->min_height + (y * p->pixel_height);
+	set->c.r = win->min_width + (x * win->pixel_width);
+	set->c.i = win->min_height + (y * win->pixel_height);
 	while (fabs(set->z.r) < 40.0 && fabs(set->z.i) < 40.0 && iter_max)
 	{
 		set->z.i = 2.0 * set->z.r*set->z.i + set->c.i;

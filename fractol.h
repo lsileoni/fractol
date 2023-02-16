@@ -61,35 +61,32 @@ typedef struct s_set
 	unsigned char	set_type;
 }					t_set;
 
-typedef struct	s_params
+typedef struct s_window
 {
-	t_set			*set;
 	double			max_width;
 	double			min_width;
 	double			max_height;
 	double			min_height;
+	double			pixel_width;
+	double			pixel_height;
+	double			x_midpoint;
+	double			y_midpoint;
+	int				x;
+	int				y;
+	unsigned short	window_height;
+	unsigned short	window_width;
+}					t_window;
+
+typedef struct	s_params
+{
+	t_set			*set;
+	t_window		*window_params;
 	double			movement_factor;
 	double			mouse_x;
 	double			mouse_y;
-	double			pixel_width;
-	double			pixel_height;
-	int				window_height;
-	int				window_width;
 	unsigned int	iter_max;
-	unsigned char	zoom;
 	unsigned char	color_scheme;
 }					t_params;
-
-typedef struct	s_app
-{
-	t_params		*params;
-	t_framebuffer	*fb;
-	void			*mlx;
-	void			*win;
-	void			*img;
-	int				drawing;
-	int				draw_text;
-}					t_app;
 
 typedef struct s_flags
 {
@@ -105,17 +102,26 @@ typedef struct s_flags
 	unsigned char	r_key;
 }					t_flags;
 
+typedef struct	s_app
+{
+	t_params		*params;
+	t_flags			*flags;
+	t_framebuffer	*fb;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	int				drawing;
+	int				draw_text;
+}					t_app;
+
 void	paint_pattern(t_app *app);
 void	switchboard(int key, t_app *param);
-void	handle_escape(int key, t_app *vars);
 void	handle_mouse_zoom(int key, t_complex z, t_app *vars);
-void	keyboard_movement(int key, t_app *vars);
 void	handle_iterations(int key, t_app *vars);
 void	energy(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
 void	colorboard(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
 void	glow(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
 void	handle_color(int key, t_app *vars);
-void	handle_modifiers(int key, t_app *vars);
 void	handle_help(int key, t_app *vars);
 t_complex com_mul(t_complex x, t_complex y);
 int	mandelbrot_check(int x, int y, t_params *p);
@@ -126,7 +132,6 @@ t_framebuffer	*init_framebuffer(t_app *vars);
 t_app			*init_app(t_params *p);
 t_params		*init_params(int h, int w);
 void	zoom_out_static(t_app *vars);
-void	zoom_in_complex(t_complex z, t_app *vars);
 int	close_window(t_app *vars);
 int	key_down(int key, t_app *vars);
 int	key_up(int key, t_app *vars);
@@ -134,4 +139,7 @@ int mouse_pos(int x, int y, t_app *vars);
 int		mouse_hook(int button, int x, int y, t_app *vars);
 void	zoom_out_static(t_app *app);
 void	zoom_in_static(t_params *p);
-void	zoom_in_complex(t_complex z, t_app *app);
+void	zoom_in_complex(t_app *app, t_complex z);
+void	keyboard_movement(int key, t_app *app, t_window *win);
+void	handle_escape(int key, t_app *app, t_window *win);
+void	handle_modifiers(int key, t_app *app, t_window *win);

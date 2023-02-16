@@ -48,24 +48,22 @@ void	put_text(t_app	*app)
 void	paint_pattern(t_app *app)
 {
 	t_framebuffer	*fb;
-	int	y;
-	int x;
+	t_window		*win;
 
 	fb = app->fb;
-	y = -1;
-	while (++y < app->params->window_height)
+	win = app->params->window_params;
+	win->y = -1;
+	while (++win->y < win->window_height)
 	{
-		x = -1;
-		while (++x < app->params->window_width)
+		win->x = -1;
+		while (++win->x < win->window_width)
 		{
-			app->params->pixel_width = (app->params->max_width - app->params->min_width) / app->params->window_width;
-			app->params->pixel_height = (app->params->max_height - app->params->min_height) / app->params->window_height;
 			if (app->params->set->set_type == MANDELBROT)
-				color_buffer(fb->buffer, (unsigned char)mandelbrot_check(x, y, app->params), fb->pixel, app->params);
+				color_buffer(fb->buffer, (unsigned char)mandelbrot_check(win->x, win->y, app->params), fb->pixel, app->params);
 			else if (app->params->set->set_type == JULIA)
-				color_buffer(fb->buffer, (unsigned char)julia_check(x, y, app->params), fb->pixel, app->params);
+				color_buffer(fb->buffer, (unsigned char)julia_check(win->x, win->y, app->params), fb->pixel, app->params);
 			else
-				color_buffer(fb->buffer, (unsigned char)thorn_check(x, y, app->params), fb->pixel, app->params);
+				color_buffer(fb->buffer, (unsigned char)thorn_check(win->x, win->y, app->params), fb->pixel, app->params);
 			fb->pixel += 4;
 		}
 	}

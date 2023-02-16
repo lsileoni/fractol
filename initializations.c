@@ -54,17 +54,37 @@ t_framebuffer	*init_framebuffer(t_app *app)
 
 t_app	*init_app(t_params *p)
 {
-	t_app	*app;
+	t_app		*app;
+	t_window	*win;
 
+	win = p->window_params;
 	app = malloc(sizeof(t_app));
 	if (!app)
 		return (NULL);
 	app->draw_text = 1;
 	app->mlx = mlx_init();
-	app->img = mlx_new_image(app->mlx, p->window_width, p->window_height);
-	app->win = mlx_new_window(app->mlx, p->window_width, p->window_height, "SEIS");
+	app->img = mlx_new_image(app->mlx, win->window_width, win->window_height);
+	app->win = mlx_new_window(app->mlx, win->window_width, win->window_height, "fractol");
 	app->params = p;
 	return (app);
+}
+
+t_window	*init_window(int h, int w)
+{
+	t_window	*win;
+	
+	win = malloc(sizeof(t_window));
+	if (!win)
+		return (NULL);
+	win->max_width = 1.0;
+	win->min_width = -1.0;
+	win->max_height = 1.0;
+	win->min_height = -1.0;
+	win->window_height = abs(h);
+	win->window_width = abs(w);
+	win->pixel_width = (win->max_width - win->min_width) / win->window_width;
+	win->pixel_height = (win->max_height - win->min_height) / win->window_height;
+	return (win);
 }
 
 t_params	*init_params(int h, int w)
@@ -73,18 +93,16 @@ t_params	*init_params(int h, int w)
 	params = malloc(sizeof(t_params));
 	if (!params)
 		return (NULL);
-	params->max_width = 1.0;
-	params->min_width = -1.0;
-	params->max_height = 1.0;
-	params->min_height = -1.0;
+	params->window_params = init_window(h, w);
+	if (!params->window_params)
+	{
+		free(params);
+		return (NULL);
+	}
 	params->movement_factor = 1;
 	params->iter_max = 52;
 	params->mouse_x = 0;
 	params->mouse_y = 0;
 	params->mouse_y = 0;
-	params->window_height = h;
-	params->window_width = w;
-	params->pixel_width = (params->max_width - params->min_width) / params->window_width;
-	params->pixel_height = (params->max_height - params->min_height) / params->window_height;
 	return (params);
 }
