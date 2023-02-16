@@ -1,5 +1,14 @@
 #include "fractol.h"
 
+t_complex	com_add(t_complex a, t_complex b)
+{
+    t_complex z;
+
+    z.r = a.r + b.r;
+    z.i = a.i + b.i;
+    return (z);
+}
+
 t_complex	com_mul(t_complex a, t_complex b)
 {
     t_complex z;
@@ -9,11 +18,11 @@ t_complex	com_mul(t_complex a, t_complex b)
     return (z);
 }
 
-t_complex	com_div(t_complex x,t_complex y)
+t_complex	com_div(t_complex a,t_complex b)
 {
     t_complex z;
 
-    z.r = (x.r*y.r + x.i*y.i)/(y.r*y.r+y.i*y.i);
-    z.i = (x.i*y.r - x.r*y.i)/(y.r*y.r + y.i*y.i);
+    z.r = (a.r*b.r + a.i*b.i)/(b.r*b.r+b.i*b.i);
+    z.i = (a.i*b.r - a.r*b.i)/(b.r*b.r + b.i*b.i);
     return (z);
 }
