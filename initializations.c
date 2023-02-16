@@ -17,7 +17,6 @@ t_set	*init_set(char *set_name)
 
 	if (!set_name)
 		return (NULL);
-
 	set = malloc(sizeof(t_set));
 	if (!set)
 		return (NULL);
@@ -52,15 +51,42 @@ t_framebuffer	*init_framebuffer(t_app *app)
 	return (fb);
 }
 
+t_flags	*init_flags(void)
+{
+	t_flags	*flags;
+
+	flags = malloc(sizeof(t_flags));
+	if (!flags)
+		return (NULL);
+	flags->esc = 0;
+	flags->left_arrow = 0;
+	flags->up_arrow = 0;
+	flags->down_arrow = 0;
+	flags->right_arrow = 0;
+	flags->i_key = 0;
+	flags->z_key = 0;
+	flags->c_key = 0;
+	flags->h_key = 0;
+	flags->r_key = 0;
+	flags->scroll_down = 0;
+	flags->scroll_up = 0;
+	return (flags);
+}
+
 t_app	*init_app(t_params *p)
 {
 	t_app		*app;
 	t_window	*win;
+	t_flags		*flags;
 
 	win = p->window_params;
 	app = malloc(sizeof(t_app));
 	if (!app)
 		return (NULL);
+	flags = init_flags();
+	if (!flags)
+		return (NULL);
+	app->flags = flags;
 	app->draw_text = 1;
 	app->mlx = mlx_init();
 	app->img = mlx_new_image(app->mlx, win->window_width, win->window_height);
