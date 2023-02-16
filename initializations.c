@@ -10,6 +10,7 @@ t_set	*init_set(char *set_name)
 	set = malloc(sizeof(t_set));
 	if (!set)
 		return (NULL);
+	ft_bzero(set, sizeof(t_set));
 	if (!ft_strncmp(set_name, "mandelbrot", ft_strlen("mandelbrot")))
 		set->set_type = MANDELBROT;
 	else if (!ft_strncmp(set_name, "julia", ft_strlen("julia")))
@@ -21,7 +22,6 @@ t_set	*init_set(char *set_name)
 		free(set);
 		return (NULL);
 	}
-	ft_bzero(set, sizeof(t_set));
 	return (set);
 }
 
@@ -45,6 +45,13 @@ t_flags	*init_flags(void)
 	if (!flags)
 		return (NULL);
 	ft_bzero(flags, sizeof(t_flags));
+	flags->key_down_flags = malloc(KEY_RANGE + 100);
+	if (!flags->key_down_flags)
+	{
+		free(flags);
+		return (NULL);
+	}
+	ft_bzero(flags->key_down_flags, KEY_RANGE);
 	return (flags);
 }
 

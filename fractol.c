@@ -9,25 +9,22 @@ void	check_modifier_actions(t_app *app)
 
 	flags = app->flags;
 	win = app->params->window_params;
-	if (flags->i_key)
+	if (flags->key_down_flags[I_KEY])
 	{
 		app->params->iter_max += 1;
 		paint_pattern(app);
-		return ;
 	}
-	if (flags->z_key)
+	if (flags->key_down_flags[Z_KEY])
 	{
 		zoom_in_static(app->params);
 		paint_pattern(app);
-		return ;
 	}
-	if (flags->c_key)
+	if (flags->key_down_flags[C_KEY])
 	{
 		app->params->color_scheme++;
 		paint_pattern(app);
-		return ;
 	}
-	if (flags->r_key)
+	if (flags->key_down_flags[R_KEY])
 	{
 		win->max_width = 2.5;
 		win->min_width = -2.5;
@@ -37,13 +34,11 @@ void	check_modifier_actions(t_app *app)
 		win->pixel_width = (win->max_width - win->min_width) / win->window_width;
 		win->pixel_height = (win->max_height - win->min_height) / win->window_height;
 		paint_pattern(app);
-		return ;
 	}
-	if (flags->h_key)
+	if (flags->key_down_flags[H_KEY])
 	{
 		app->draw_text *= -1;
 		paint_pattern(app);
-		return ;
 	}
 }
 
@@ -54,33 +49,29 @@ void	check_movement_actions(t_app *app)
 
 	flags = app->flags;
 	win = app->params->window_params;
-	if (flags->left_arrow)
+	if (flags->key_down_flags[LEFT_ARROW])
 	{
 		win->min_width -= 0.1 / app->params->movement_factor;
 		win->max_width -= 0.1 / app->params->movement_factor;
 		paint_pattern(app);
-		return ;
 	}
-	if (flags->right_arrow)
+	if (flags->key_down_flags[RIGHT_ARROW])
 	{
 		win->min_width += 0.1 / app->params->movement_factor;
 		win->max_width += 0.1 / app->params->movement_factor;
 		paint_pattern(app);
-		return ;
 	}
-	if (flags->up_arrow)
+	if (flags->key_down_flags[UP_ARROW])
 	{
 		win->max_height -= 0.1 / app->params->movement_factor;
 		win->min_height -= 0.1 / app->params->movement_factor;
 		paint_pattern(app);
-		return ;
 	}
-	if (flags->down_arrow)
+	if (flags->key_down_flags[DOWN_ARROW])
 	{
 		win->max_height += 0.1 / app->params->movement_factor;
 		win->min_height += 0.1 / app->params->movement_factor;
 		paint_pattern(app);
-		return ;
 	}
 }
 
@@ -101,7 +92,10 @@ void	check_mouse_actions(t_app *app)
 
 int	render_frame(t_app *app)
 {
-	if (app->flags->esc)
+	unsigned char	*key_down;
+
+	key_down = app->flags->key_down_flags;
+	if (key_down[ESC])
 	{
 		mlx_destroy_image(app->mlx, app->img);
 		mlx_destroy_window(app->mlx, app->win);
@@ -118,13 +112,16 @@ int	render_frame(t_app *app)
 	check_modifier_actions(app);
 	check_movement_actions(app);
 	ft_bzero(app->flags, sizeof(t_flags));
+	app->flags->key_down_flags = key_down;
 	return (0);
 }
 
 void	define_hooks(t_app *app)
 {
 	mlx_hook(app->win, 2, 1L<<0, key_down, app);
+	mlx_hook(app->win, 3, 1L<<0, key_up, app);
 	mlx_hook(app->win, 4, 1L<<0, mouse_hook, app);
+	mlx_hook(app->win, 6, 1L<<0, mouse_movement_hook, app);
 	mlx_hook(app->win, 17, 1L<<0, close_window, app);
 	mlx_loop_hook(app->mlx, render_frame, app);
 }
@@ -153,7 +150,7 @@ int	main(int argc, char **argv)
 	params->set = set;
 	app->fb = fb;
 	define_hooks(app);
-	paint_pattern(app);
 	mlx_loop(app->mlx);
+	paint_pattern(app);
 	return (0);
 }

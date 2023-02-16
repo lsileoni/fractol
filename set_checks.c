@@ -70,8 +70,8 @@ int julia_check(int x, int y, t_params *p)
 
 int mandelbrot_check(int x, int y, t_params *p)
 {
-	t_set			*set;
 	t_window		*win;
+	t_set			*set;
 	unsigned int	iter_max;
 
 	set = p->set;

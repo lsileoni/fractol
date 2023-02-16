@@ -5,6 +5,7 @@
 #include <math.h>
 #define KEY_COUNT 10
 #define COLOR_SCHEMES 7
+#define KEY_RANGE 127
 
 enum e_keys 
 {
@@ -97,15 +98,7 @@ typedef struct	s_params
 typedef struct s_flags
 {
 	unsigned char	esc;
-	unsigned char	left_arrow;
-	unsigned char	up_arrow;
-	unsigned char	down_arrow;
-	unsigned char	right_arrow;
-	unsigned char	i_key;
-	unsigned char	z_key;
-	unsigned char	c_key;
-	unsigned char	h_key;
-	unsigned char	r_key;
+	unsigned char	*key_down_flags;
 	unsigned char	scroll_down;
 	unsigned char	scroll_up;
 	unsigned char	mouse_one_down;
@@ -124,7 +117,7 @@ typedef struct	s_app
 }					t_app;
 
 void	paint_pattern(t_app *app);
-void	switchboard(int key, t_app *param);
+void	switchboard(int key, t_app *app, unsigned char up_down);
 void	handle_mouse_zoom(int key, t_complex z, t_app *vars);
 void	handle_iterations(int key, t_app *vars);
 void	energy(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
@@ -143,6 +136,7 @@ int	key_down(int key, t_app *vars);
 int	key_up(int key, t_app *vars);
 int mouse_pos(int x, int y, t_app *vars);
 int		mouse_hook(int button, int x, int y, t_app *app);
+int	mouse_movement_hook(int x, int y, t_app *app);
 void	zoom_out_static(t_app *app);
 void	zoom_in_static(t_params *p);
 void	zoom_in_complex(t_app *app, int x, int y);
