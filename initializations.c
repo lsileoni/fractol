@@ -1,16 +1,6 @@
 #include "fractol.h"
 #include "./libft/src/libft.h"
 
-static void	setzero(t_set *set)
-{
-	set->z.r = 0;
-	set->z.i = 0;
-	set->z_s.r = 0;
-	set->z_s.i = 0;
-	set->c.r = 0;
-	set->c.i = 0;
-}
-
 t_set	*init_set(char *set_name)
 {
 	t_set	*set;
@@ -31,7 +21,7 @@ t_set	*init_set(char *set_name)
 		free(set);
 		return (NULL);
 	}
-	setzero(set);
+	ft_bzero(set, sizeof(t_set));
 	return (set);
 }
 
@@ -42,11 +32,7 @@ t_framebuffer	*init_framebuffer(t_app *app)
 	fb = malloc(sizeof(t_framebuffer));
 	if (!fb || !app)
 		return (NULL);
-	fb->buffer = NULL;
-	fb->line_bytes = 0;
-	fb->pixel_bits = 0;
-	fb->pixel = 0;
-	fb->endian = 0;
+	ft_bzero(fb, sizeof(t_framebuffer));
 	fb->buffer = mlx_get_data_addr(app->img, &fb->pixel_bits, &fb->line_bytes, &fb->endian);
 	return (fb);
 }
@@ -58,18 +44,7 @@ t_flags	*init_flags(void)
 	flags = malloc(sizeof(t_flags));
 	if (!flags)
 		return (NULL);
-	flags->esc = 0;
-	flags->left_arrow = 0;
-	flags->up_arrow = 0;
-	flags->down_arrow = 0;
-	flags->right_arrow = 0;
-	flags->i_key = 0;
-	flags->z_key = 0;
-	flags->c_key = 0;
-	flags->h_key = 0;
-	flags->r_key = 0;
-	flags->scroll_down = 0;
-	flags->scroll_up = 0;
+	ft_bzero(flags, sizeof(t_flags));
 	return (flags);
 }
 
@@ -83,6 +58,7 @@ t_app	*init_app(t_params *p)
 	app = malloc(sizeof(t_app));
 	if (!app)
 		return (NULL);
+	ft_bzero(app, sizeof(t_app));
 	flags = init_flags();
 	if (!flags)
 		return (NULL);
@@ -102,10 +78,10 @@ t_window	*init_window(int h, int w)
 	win = malloc(sizeof(t_window));
 	if (!win)
 		return (NULL);
-	win->max_width = 1.0;
-	win->min_width = -1.0;
-	win->max_height = 1.0;
-	win->min_height = -1.0;
+	win->max_width = 2.5;
+	win->min_width = -2.5;
+	win->max_height = 2.5;
+	win->min_height = -2.5;
 	win->window_height = abs(h);
 	win->window_width = abs(w);
 	win->pixel_width = (win->max_width - win->min_width) / win->window_width;
@@ -119,6 +95,7 @@ t_params	*init_params(int h, int w)
 	params = malloc(sizeof(t_params));
 	if (!params)
 		return (NULL);
+	ft_bzero(params, sizeof(t_params));
 	params->window_params = init_window(h, w);
 	if (!params->window_params)
 	{
@@ -127,8 +104,5 @@ t_params	*init_params(int h, int w)
 	}
 	params->movement_factor = 1;
 	params->iter_max = 52;
-	params->mouse_x = 0;
-	params->mouse_y = 0;
-	params->mouse_y = 0;
 	return (params);
 }

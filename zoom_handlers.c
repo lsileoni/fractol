@@ -39,13 +39,16 @@ void	zoom_in_static(t_params *p)
 	p->movement_factor *= 2;
 }
 
-void	zoom_in_complex(t_app *app, t_complex z)
+void	zoom_in_complex(t_app *app, int x, int y)
 {
 	t_params	*p;
 	t_window	*win;
+	t_complex	z;
 
 	p = app->params;
 	win = p->window_params;
+	z.r = win->min_width + (x * win->pixel_width);
+	z.i = win->min_height + (y * win->pixel_height);
 	win->max_width = (win->max_width + z.r) / 2;
 	win->min_width = (win->min_width + z.r) / 2;
 	win->max_height = (win->max_height + z.i) / 2;

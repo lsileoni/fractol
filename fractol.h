@@ -20,6 +20,12 @@ enum e_keys
 	R_KEY=15
 };
 
+enum e_buttons {
+	MOUSE_ONE_DOWN = 1,
+	SCROLL_UP = 4,
+	SCROLL_DOWN = 5
+};
+
 enum e_sets 
 {
 	MANDELBROT,
@@ -100,6 +106,9 @@ typedef struct s_flags
 	unsigned char	c_key;
 	unsigned char	h_key;
 	unsigned char	r_key;
+	unsigned char	scroll_down;
+	unsigned char	scroll_up;
+	unsigned char	mouse_one_down;
 }					t_flags;
 
 typedef struct	s_app
@@ -120,10 +129,7 @@ void	handle_mouse_zoom(int key, t_complex z, t_app *vars);
 void	handle_iterations(int key, t_app *vars);
 void	energy(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
 void	colorboard(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
-void	glow(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
-void	handle_color(int key, t_app *vars);
-void	handle_help(int key, t_app *vars);
-t_complex com_mul(t_complex x, t_complex y);
+void	glow(unsigned char color, unsigned int pixel, unsigned char iters, char *buf);
 int	mandelbrot_check(int x, int y, t_params *p);
 int	julia_check(int x, int y, t_params *p);
 int	thorn_check(int x, int y, t_params *p);
@@ -136,10 +142,10 @@ int	close_window(t_app *vars);
 int	key_down(int key, t_app *vars);
 int	key_up(int key, t_app *vars);
 int mouse_pos(int x, int y, t_app *vars);
-int		mouse_hook(int button, int x, int y, t_app *vars);
+int		mouse_hook(int button, int x, int y, t_app *app);
 void	zoom_out_static(t_app *app);
 void	zoom_in_static(t_params *p);
-void	zoom_in_complex(t_app *app, t_complex z);
-void	keyboard_movement(int key, t_app *app, t_window *win);
-void	handle_escape(int key, t_app *app, t_window *win);
-void	handle_modifiers(int key, t_app *app, t_window *win);
+void	zoom_in_complex(t_app *app, int x, int y);
+t_complex	com_mul(t_complex a, t_complex b);
+t_complex	com_add(t_complex a, t_complex b);
+t_complex	com_div(t_complex x,t_complex y);
