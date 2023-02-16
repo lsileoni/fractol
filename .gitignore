@@ -2,3 +2,4 @@ libft/
 minilibx_opengl/
 fractol
 fractol.dSYM/
+*.o
