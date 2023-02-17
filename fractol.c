@@ -31,6 +31,7 @@ void	check_modifier_actions(t_app *app)
 		win->max_height = 2.5;
 		win->min_height = -2.5;
 		app->params->movement_factor = 1.0;
+		app->params->iter_max = 50;
 		win->pixel_width = (win->max_width - win->min_width) / win->window_width;
 		win->pixel_height = (win->max_height - win->min_height) / win->window_height;
 		paint_pattern(app);
