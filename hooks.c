@@ -14,8 +14,6 @@ int		mouse_hook(int button, int x, int y, t_app *app)
 		app->flags->scroll_down = 1;
 	else if (button == MOUSE_ONE_DOWN)
 		app->flags->mouse_one_down = 1;
-	if (app->params->set->set_type == JULIA)
-		paint_pattern(app);
 	return (0);
 }
 
@@ -24,7 +22,7 @@ int	mouse_movement_hook(int x, int y, t_app *app)
 	app->params->mouse_x = x;
 	app->params->mouse_y = y;
 	if (app->params->set->set_type == JULIA)
-		paint_pattern(app);
+		app->flags->mouse_moved = 1;
 	return (0);
 }
 

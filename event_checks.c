@@ -82,4 +82,9 @@ void	check_mouse_actions(t_app *app)
 	{
 		zoom_out_static(app);
 	}
+	if (app->flags->mouse_moved)
+	{
+		paint_pattern(app);
+		app->flags->mouse_moved = 0;
+	}
 }

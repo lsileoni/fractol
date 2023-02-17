@@ -102,6 +102,7 @@ typedef struct s_flags
 	unsigned char	scroll_down;
 	unsigned char	scroll_up;
 	unsigned char	mouse_one_down;
+	unsigned char	mouse_moved;
 }					t_flags;
 
 typedef struct	s_app

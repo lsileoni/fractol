@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	params->set = set;
 	app->fb = fb;
 	define_hooks(app);
-	mlx_loop(app->mlx);
 	paint_pattern(app);
+	mlx_loop(app->mlx);
 	return (0);
 }
