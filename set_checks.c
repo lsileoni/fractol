@@ -42,19 +42,24 @@ int thorn_check(int x, int y, t_params *p)
 	return ((unsigned char) (iter_max));
 }
 
-int julia_check(int x, int y, t_params *p)
+int julia_check(int x, int y, t_app *app)
 {
+	t_params		*p;
 	t_window		*win;
 	t_set			*set;
 	unsigned int	iter_max;
 
+	p = app->params;
 	set = p->set;
 	win = p->window_params;
 	iter_max = p->iter_max;
 	set->z.i = win->min_height + (y * win->pixel_height);
 	set->z.r = win->min_width + (x * win->pixel_width);
-	set->c.i = win->min_height + (p->mouse_y * win->pixel_height);
-	set->c.r = win->min_width + (p->mouse_x * win->pixel_width);
+	if (app->flags->mouse_one_down)
+	{
+		set->c.i = win->min_height + (p->mouse_y * win->pixel_height);
+		set->c.r = win->min_width + (p->mouse_x * win->pixel_width);
+	}
 	set->z_s.r = set->z.r * set->z.r;
 	set->z_s.i = set->z.i * set->z.i;
 	while (fabs(set->z_s.r) < 40.0 && fabs(set->z_s.i) < 40.0 && iter_max)

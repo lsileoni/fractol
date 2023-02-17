@@ -52,6 +52,7 @@ t_flags	*init_flags(void)
 		return (NULL);
 	}
 	ft_bzero(flags->key_down_flags, KEY_RANGE);
+	flags->mouse_one_down = 1;
 	return (flags);
 }
 

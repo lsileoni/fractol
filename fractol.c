@@ -4,9 +4,11 @@
 
 int	render_frame(t_app *app)
 {
+	unsigned char	mouse_one_down;
 	unsigned char	*key_down;
 
 	key_down = app->flags->key_down_flags;
+	mouse_one_down = app->flags->mouse_one_down;
 	if (key_down[ESC])
 	{
 		mlx_destroy_image(app->mlx, app->img);
@@ -26,6 +28,7 @@ int	render_frame(t_app *app)
 	check_movement_actions(app, app->params->window_params, key_down);
 	ft_bzero(app->flags, sizeof(t_flags));
 	app->flags->key_down_flags = key_down;
+	app->flags->mouse_one_down = mouse_one_down;
 	return (0);
 }
 

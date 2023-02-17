@@ -125,7 +125,7 @@ void	energy(unsigned char color, unsigned int pixel, unsigned char iterations, c
 void	colorboard(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
 void	glow(unsigned char color, unsigned int pixel, unsigned char iters, char *buf);
 int	mandelbrot_check(int x, int y, t_params *p);
-int	julia_check(int x, int y, t_params *p);
+int julia_check(int x, int y, t_app *app);
 int	thorn_check(int x, int y, t_params *p);
 t_set			*init_set(char *set_name);
 t_framebuffer	*init_framebuffer(t_app *vars);

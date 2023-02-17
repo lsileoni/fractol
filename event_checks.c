@@ -84,7 +84,8 @@ void	check_mouse_actions(t_app *app)
 	}
 	if (app->flags->mouse_moved)
 	{
-		paint_pattern(app);
+		if (app->flags->mouse_one_down)
+			paint_pattern(app);
 		app->flags->mouse_moved = 0;
 	}
 }

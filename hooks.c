@@ -13,7 +13,17 @@ int		mouse_hook(int button, int x, int y, t_app *app)
 	else if (button == SCROLL_UP)
 		app->flags->scroll_down = 1;
 	else if (button == MOUSE_ONE_DOWN)
-		app->flags->mouse_one_down = 1;
+	{
+		if (!app->flags->mouse_one_down)
+			app->flags->mouse_one_down = 1;
+		else
+		{
+			app->flags->mouse_one_down = 0;
+			app->params->set->c.i = window->min_height + (app->params->mouse_y * window->pixel_height);
+			app->params->set->c.r = window->min_width + (app->params->mouse_x * window->pixel_width);
+			paint_pattern(app);
+		}
+	}
 	return (0);
 }
 

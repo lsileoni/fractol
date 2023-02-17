@@ -61,7 +61,7 @@ void	paint_pattern(t_app *app)
 			if (app->params->set->set_type == MANDELBROT)
 				color_buffer(fb->buffer, (unsigned char)mandelbrot_check(win->x, win->y, app->params), fb->pixel, app->params);
 			else if (app->params->set->set_type == JULIA)
-				color_buffer(fb->buffer, (unsigned char)julia_check(win->x, win->y, app->params), fb->pixel, app->params);
+				color_buffer(fb->buffer, (unsigned char)julia_check(win->x, win->y, app), fb->pixel, app->params);
 			else
 				color_buffer(fb->buffer, (unsigned char)thorn_check(win->x, win->y, app->params), fb->pixel, app->params);
 			fb->pixel += 4;
