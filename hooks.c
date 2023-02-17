@@ -38,6 +38,16 @@ int	mouse_movement_hook(int x, int y, t_app *app)
 
 int	key_down(int key, t_app *app)
 {
+	if (key == C_KEY)
+	{
+		app->params->color_scheme++;
+		paint_pattern(app);
+	}
+	if (key == H_KEY)
+	{
+		app->draw_text *= -1;
+		paint_pattern(app);
+	}
 	switchboard(key, app, 1);
 	return (0);
 }

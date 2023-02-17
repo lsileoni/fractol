@@ -24,19 +24,9 @@ void	check_modifier_actions(t_app *app, t_window *win, unsigned char *key_down_f
 		zoom_in_static(app->params);
 		paint_pattern(app);
 	}
-	if (key_down_flags[C_KEY])
-	{
-		app->params->color_scheme++;
-		paint_pattern(app);
-	}
 	if (key_down_flags[R_KEY])
 	{
 		reset_view(app, win);
-		paint_pattern(app);
-	}
-	if (key_down_flags[H_KEY])
-	{
-		app->draw_text *= -1;
 		paint_pattern(app);
 	}
 }
