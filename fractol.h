@@ -143,3 +143,6 @@ void	zoom_in_complex(t_app *app, int x, int y);
 t_complex	com_mul(t_complex a, t_complex b);
 t_complex	com_add(t_complex a, t_complex b);
 t_complex	com_div(t_complex x,t_complex y);
+void	check_modifier_actions(t_app *app, t_window *win, unsigned char *key_down_flags);
+void	check_movement_actions(t_app *app, t_window	*win, unsigned char *key_down_flags);
+void	check_mouse_actions(t_app *app);
