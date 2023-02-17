@@ -37,7 +37,7 @@ t_framebuffer	*init_framebuffer(t_app *app)
 	return (fb);
 }
 
-t_flags	*init_flags(void)
+t_flags	*init_flags(t_args	*args)
 {
 	t_flags	*flags;
 
@@ -52,11 +52,14 @@ t_flags	*init_flags(void)
 		return (NULL);
 	}
 	ft_bzero(flags->key_down_flags, KEY_RANGE);
-	flags->mouse_one_down = 1;
+	if (!args->param_count)
+		flags->mouse_one_down = 1;
+	else
+		flags->mouse_one_down = 0;
 	return (flags);
 }
 
-t_app	*init_app(t_params *p)
+t_app	*init_app(t_params *p, t_args *args)
 {
 	t_app		*app;
 	t_window	*win;
@@ -67,7 +70,9 @@ t_app	*init_app(t_params *p)
 	if (!app)
 		return (NULL);
 	ft_bzero(app, sizeof(t_app));
-	flags = init_flags();
+	app->params = p;
+	app->params->args = args;
+	flags = init_flags(p->args);
 	if (!flags)
 		return (NULL);
 	app->flags = flags;
@@ -75,7 +80,6 @@ t_app	*init_app(t_params *p)
 	app->mlx = mlx_init();
 	app->img = mlx_new_image(app->mlx, win->window_width, win->window_height);
 	app->win = mlx_new_window(app->mlx, win->window_width, win->window_height, "fractol");
-	app->params = p;
 	return (app);
 }
 
@@ -97,7 +101,7 @@ t_window	*init_window(int h, int w)
 	return (win);
 }
 
-t_params	*init_params(int h, int w)
+t_params	*init_params(int h, int w, t_set *set)
 {
 	t_params	*params;
 	params = malloc(sizeof(t_params));
@@ -112,5 +116,6 @@ t_params	*init_params(int h, int w)
 	}
 	params->movement_factor = 1;
 	params->iter_max = 52;
+	params->set = set;
 	return (params);
 }

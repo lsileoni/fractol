@@ -84,10 +84,20 @@ typedef struct s_window
 	unsigned short	window_width;
 }					t_window;
 
+typedef struct s_args
+{
+	unsigned int	x;
+	unsigned int	y;
+	int				pos_one;
+	int				pos_two;
+	int				param_count;
+}					t_args;
+
 typedef struct	s_params
 {
 	t_set			*set;
 	t_window		*window_params;
+	t_args			*args;
 	double			movement_factor;
 	double			mouse_x;
 	double			mouse_y;
@@ -130,8 +140,8 @@ int julia_check(int x, int y, t_app *app);
 int	thorn_check(int x, int y, t_params *p);
 t_set			*init_set(char *set_name);
 t_framebuffer	*init_framebuffer(t_app *vars);
-t_app			*init_app(t_params *p);
-t_params		*init_params(int h, int w);
+t_app			*init_app(t_params *p, t_args *args);
+t_params		*init_params(int h, int w, t_set *set);
 void	zoom_out_static(t_app *vars);
 int	close_window(t_app *vars);
 int	key_down(int key, t_app *vars);
