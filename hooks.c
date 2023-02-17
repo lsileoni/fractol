@@ -45,10 +45,13 @@ int	close_window(t_app *app)
 {
 	mlx_destroy_image(app->mlx, app->img);
 	mlx_destroy_window(app->mlx, app->win);
-	free(app->params->set);
 	free(app->params->window_params);
+	free(app->params->set);
 	free(app->params);
+	free(app->flags->key_down_flags);
 	free(app->fb);
+	free(app->flags);
 	free(app);
 	exit(0);
+	return (0);
 }
