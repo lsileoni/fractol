@@ -1,5 +1,17 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initializations.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/19 22:26:15 by lsileoni          #+#    #+#             */
+/*   Updated: 2023/02/19 22:36:54 by lsileoni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft/src/libft.h"
+#include "fractol.h"
 
 t_set	*init_set(char *set_name)
 {
@@ -33,11 +45,12 @@ t_framebuffer	*init_framebuffer(t_app *app)
 	if (!fb || !app)
 		return (NULL);
 	ft_bzero(fb, sizeof(t_framebuffer));
-	fb->buffer = mlx_get_data_addr(app->img, &fb->pixel_bits, &fb->line_bytes, &fb->endian);
+	fb->buffer = mlx_get_data_addr(app->img, &fb->pixel_bits, &fb->line_bytes,
+			&fb->endian);
 	return (fb);
 }
 
-t_flags	*init_flags(t_args	*args)
+static t_flags	*init_flags(t_args *args)
 {
 	t_flags	*flags;
 
@@ -79,14 +92,15 @@ t_app	*init_app(t_params *p, t_args *args)
 	app->draw_text = 1;
 	app->mlx = mlx_init();
 	app->img = mlx_new_image(app->mlx, win->window_width, win->window_height);
-	app->win = mlx_new_window(app->mlx, win->window_width, win->window_height, "fractol");
+	app->win = mlx_new_window(app->mlx, win->window_width, win->window_height,
+			"fractol");
 	return (app);
 }
 
 t_window	*init_window(int h, int w)
 {
 	t_window	*win;
-	
+
 	win = malloc(sizeof(t_window));
 	if (!win)
 		return (NULL);
@@ -97,13 +111,15 @@ t_window	*init_window(int h, int w)
 	win->window_height = abs(h);
 	win->window_width = abs(w);
 	win->pixel_width = (win->max_width - win->min_width) / win->window_width;
-	win->pixel_height = (win->max_height - win->min_height) / win->window_height;
+	win->pixel_height = (win->max_height - win->min_height)
+		/ win->window_height;
 	return (win);
 }
 
 t_params	*init_params(int h, int w, t_set *set)
 {
 	t_params	*params;
+
 	params = malloc(sizeof(t_params));
 	if (!params)
 		return (NULL);

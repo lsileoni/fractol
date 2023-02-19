@@ -1,18 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event_checks.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/19 22:25:54 by lsileoni          #+#    #+#             */
+/*   Updated: 2023/02/19 22:29:31 by lsileoni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-static void	reset_view(t_app *app, t_window *win)
+static void	reset_view(t_app *app, t_window *w)
 {
-	win->max_width = 2.5;
-	win->min_width = -2.5;
-	win->max_height = 2.5;
-	win->min_height = -2.5;
+	w->max_width = 2.5;
+	w->min_width = -2.5;
+	w->max_height = 2.5;
+	w->min_height = -2.5;
 	app->params->movement_factor = 1.0;
 	app->params->iter_max = 50;
-	win->pixel_width = (win->max_width - win->min_width) / win->window_width;
-	win->pixel_height = (win->max_height - win->min_height) / win->window_height;
+	w->pixel_width = (w->max_width - w->min_width) / w->window_width;
+	w->pixel_height = (w->max_height - w->min_height) / w->window_height;
 }
 
-void	check_modifier_actions(t_app *app, t_window *win, unsigned char *key_down_flags)
+void	check_modifier_actions(t_app *app, t_window *win,
+		unsigned char *key_down_flags)
 {
 	if (key_down_flags[I_KEY])
 	{
@@ -31,7 +44,8 @@ void	check_modifier_actions(t_app *app, t_window *win, unsigned char *key_down_f
 	}
 }
 
-void	check_movement_actions(t_app *app, t_window	*win, unsigned char *key_down_flags)
+void	check_movement_actions(t_app *app, t_window *win,
+		unsigned char *key_down_flags)
 {
 	if (key_down_flags[LEFT_ARROW])
 	{
@@ -61,7 +75,7 @@ void	check_movement_actions(t_app *app, t_window	*win, unsigned char *key_down_f
 
 void	check_mouse_actions(t_app *app)
 {
-	t_flags		*flags;
+	t_flags	*flags;
 
 	flags = app->flags;
 	if (app->flags->scroll_up)

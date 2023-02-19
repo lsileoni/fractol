@@ -1,40 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
+/*   Updated: 2023/02/19 22:26:08 by lsileoni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minilibx_opengl/mlx.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #define KEY_COUNT 10
 #define COLOR_SCHEMES 7
 #define KEY_RANGE 127
+#define BOUNDING_BOX 40.0f
 
-enum e_keys 
+enum				e_keys
 {
-	ESC=53,
-	LEFT_ARROW=123,
-	UP_ARROW=126,
-	DOWN_ARROW=125,
-	RIGHT_ARROW=124,
-	I_KEY=34,
-	Z_KEY=6,
-	C_KEY=8,
-	H_KEY=4,
-	R_KEY=15
+	ESC = 53,
+	LEFT_ARROW = 123,
+	UP_ARROW = 126,
+	DOWN_ARROW = 125,
+	RIGHT_ARROW = 124,
+	I_KEY = 34,
+	Z_KEY = 6,
+	C_KEY = 8,
+	H_KEY = 4,
+	R_KEY = 15
 };
 
-enum e_buttons {
+enum				e_buttons
+{
 	MOUSE_ONE_DOWN = 1,
 	SCROLL_UP = 4,
 	SCROLL_DOWN = 5
 };
 
-enum e_sets 
+enum				e_sets
 {
 	MANDELBROT,
 	JULIA,
-	THORN	
+	THORN
 };
 
-enum e_colors 
+enum				e_colors
 {
 	NEON_ENERGY,
 	WHITE_ENERGY,
@@ -47,20 +61,20 @@ enum e_colors
 
 typedef struct s_complex
 {
-    double	r;
-    double	i;
-}	t_complex;
+	double			r;
+	double			i;
+}					t_complex;
 
 typedef struct s_framebuffer
 {
-	int		pixel_bits;
-	int		line_bytes;
-	int		endian;
-	int		pixel;
-	char	*buffer;
-}			t_framebuffer;
+	int				pixel_bits;
+	int				line_bytes;
+	int				endian;
+	int				pixel;
+	char			*buffer;
+}					t_framebuffer;
 
-typedef struct s_set 
+typedef struct s_set
 {
 	t_complex		z;
 	t_complex		z_s;
@@ -93,7 +107,7 @@ typedef struct s_args
 	int				param_count;
 }					t_args;
 
-typedef struct	s_params
+typedef struct s_params
 {
 	t_set			*set;
 	t_window		*window_params;
@@ -116,7 +130,7 @@ typedef struct s_flags
 	unsigned char	previous_key;
 }					t_flags;
 
-typedef struct	s_app
+typedef struct s_app
 {
 	t_params		*params;
 	t_flags			*flags;
@@ -128,33 +142,40 @@ typedef struct	s_app
 	int				draw_text;
 }					t_app;
 
-void	paint_pattern(t_app *app);
-void	switchboard(int key, t_app *app, unsigned char up_down);
-void	handle_mouse_zoom(int key, t_complex z, t_app *vars);
-void	handle_iterations(int key, t_app *vars);
-void	energy(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
-void	colorboard(unsigned char color, unsigned int pixel, unsigned char iterations, char *buffer);
-void	glow(unsigned char color, unsigned int pixel, unsigned char iters, char *buf);
-int	mandelbrot_check(int x, int y, t_params *p);
-int julia_check(int x, int y, t_app *app);
-int	thorn_check(int x, int y, t_params *p);
-t_set			*init_set(char *set_name);
-t_framebuffer	*init_framebuffer(t_app *vars);
-t_app			*init_app(t_params *p, t_args *args);
-t_params		*init_params(int h, int w, t_set *set);
-void	zoom_out_static(t_app *vars);
-int	close_window(t_app *vars);
-int	key_down(int key, t_app *vars);
-int	key_up(int key, t_app *vars);
-int mouse_pos(int x, int y, t_app *vars);
-int		mouse_hook(int button, int x, int y, t_app *app);
-int	mouse_movement_hook(int x, int y, t_app *app);
-void	zoom_out_static(t_app *app);
-void	zoom_in_static(t_params *p);
-void	zoom_in_complex(t_app *app, int x, int y);
-t_complex	com_mul(t_complex a, t_complex b);
-t_complex	com_add(t_complex a, t_complex b);
-t_complex	com_div(t_complex x,t_complex y);
-void	check_modifier_actions(t_app *app, t_window *win, unsigned char *key_down_flags);
-void	check_movement_actions(t_app *app, t_window	*win, unsigned char *key_down_flags);
-void	check_mouse_actions(t_app *app);
+void				paint_pattern(t_app *app);
+void				switchboard(int key, t_app *app, unsigned char up_down);
+void				handle_mouse_zoom(int key, t_complex z, t_app *vars);
+void				handle_iterations(int key, t_app *vars);
+void				energy(unsigned char color, unsigned int pixel,
+						unsigned char iterations, char *buffer);
+void				colorboard(unsigned char color, unsigned int pixel,
+						unsigned char iterations, char *buffer);
+void				glow(unsigned char color, unsigned int pixel,
+						unsigned char iters, char *buf);
+void				solid(unsigned char color, unsigned int pixel, unsigned char iters,
+						char *buf);
+int					mandelbrot_check(int x, int y, t_params *p);
+int					julia_check(int x, int y, t_app *app);
+int					thorn_check(int x, int y, t_params *p);
+t_set				*init_set(char *set_name);
+t_framebuffer		*init_framebuffer(t_app *vars);
+t_app				*init_app(t_params *p, t_args *args);
+t_params			*init_params(int h, int w, t_set *set);
+void				zoom_out_static(t_app *vars);
+int					close_window(t_app *vars);
+int					key_down(int key, t_app *vars);
+int					key_up(int key, t_app *vars);
+int					mouse_pos(int x, int y, t_app *vars);
+int					mouse_hook(int button, int x, int y, t_app *app);
+int					mouse_movement_hook(int x, int y, t_app *app);
+void				zoom_out_static(t_app *app);
+void				zoom_in_static(t_params *p);
+void				zoom_in_complex(t_app *app, int x, int y);
+t_complex			com_mul(t_complex a, t_complex b);
+t_complex			com_add(t_complex a, t_complex b);
+t_complex			com_div(t_complex x, t_complex y);
+void				check_modifier_actions(t_app *app, t_window *win,
+						unsigned char *key_down_flags);
+void				check_movement_actions(t_app *app, t_window *win,
+						unsigned char *key_down_flags);
+void				check_mouse_actions(t_app *app);

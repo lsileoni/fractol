@@ -1,20 +1,35 @@
-#include "fractol.h"
-#include "./libft/src/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   paint.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/19 22:26:23 by lsileoni          #+#    #+#             */
+/*   Updated: 2023/02/19 22:26:25 by lsileoni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	put_controls(t_app *app)
+#include "./libft/src/libft.h"
+#include "fractol.h"
+
+static void	put_controls(t_app *app)
 {
 	mlx_string_put(app->mlx, app->win, 5, 60, 0x00000000, "Controls");
 	mlx_string_put(app->mlx, app->win, 5, 80, 0x00000000, "---------------");
-	mlx_string_put(app->mlx, app->win, 5, 100, 0x00000000, "Arrow keys: Movement");
+	mlx_string_put(app->mlx, app->win, 5, 100, 0x00000000, \
+			"Arrow keys: Movement");
 	mlx_string_put(app->mlx, app->win, 5, 120, 0x00000000, "Z: Zoom");
 	mlx_string_put(app->mlx, app->win, 5, 140, 0x00000000, "C: Cycle color");
-	mlx_string_put(app->mlx, app->win, 5, 160, 0x00000000, "I: Increase iterations");
-	mlx_string_put(app->mlx, app->win, 5, 180, 0x00000000, "Mouse scroll wheel: Zoom in and out");
+	mlx_string_put(app->mlx, app->win, 5, 160, 0x00000000, \
+			"I: Increase iterations");
+	mlx_string_put(app->mlx, app->win, 5, 180, 0x00000000, \
+			"Mouse scroll wheel: Zoom in and out");
 	mlx_string_put(app->mlx, app->win, 5, 200, 0x00000000, "H: Toggle help");
 	mlx_string_put(app->mlx, app->win, 5, 220, 0x00000000, "R: Reset position");
 }
 
-void	color_buffer(char *buf, unsigned char iters, int pixel, t_params *p)
+static void	color_buffer(char *buf, unsigned char iters, int pixel, t_params *p)
 {
 	if (!iters)
 	{
@@ -27,7 +42,7 @@ void	color_buffer(char *buf, unsigned char iters, int pixel, t_params *p)
 		colorboard(p->color_scheme, pixel, iters, buf);
 }
 
-void	put_text(t_app	*app)
+static void	put_text(t_app *app)
 {
 	char	*printable_string;
 	char	*placeholder;
@@ -45,6 +60,20 @@ void	put_text(t_app	*app)
 	put_controls(app);
 }
 
+static void	paint_pixel(t_app *app, t_window *win, \
+		t_framebuffer *fb, int set_type)
+{
+	if (set_type == MANDELBROT)
+		color_buffer(fb->buffer, (unsigned char)mandelbrot_check(win->x, \
+					win->y, app->params), fb->pixel, app->params);
+	else if (set_type == JULIA)
+		color_buffer(fb->buffer, (unsigned char)julia_check(win->x, \
+					win->y, app), fb->pixel, app->params);
+	else
+		color_buffer(fb->buffer, (unsigned char)thorn_check(win->x, \
+					win->y, app->params), fb->pixel, app->params);
+}
+
 void	paint_pattern(t_app *app)
 {
 	t_framebuffer	*fb;
@@ -58,12 +87,7 @@ void	paint_pattern(t_app *app)
 		win->x = -1;
 		while (++win->x < win->window_width)
 		{
-			if (app->params->set->set_type == MANDELBROT)
-				color_buffer(fb->buffer, (unsigned char)mandelbrot_check(win->x, win->y, app->params), fb->pixel, app->params);
-			else if (app->params->set->set_type == JULIA)
-				color_buffer(fb->buffer, (unsigned char)julia_check(win->x, win->y, app), fb->pixel, app->params);
-			else
-				color_buffer(fb->buffer, (unsigned char)thorn_check(win->x, win->y, app->params), fb->pixel, app->params);
+			paint_pixel(app, win, fb, app->params->set->set_type);
 			fb->pixel += 4;
 		}
 	}

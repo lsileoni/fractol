@@ -1,10 +1,22 @@
-#include "fractol.h"
-#include "./libft/src/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/19 22:26:11 by lsileoni          #+#    #+#             */
+/*   Updated: 2023/02/19 22:26:11 by lsileoni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		mouse_hook(int button, int x, int y, t_app *app)
+#include "./libft/src/libft.h"
+#include "fractol.h"
+
+int	mouse_hook(int button, int x, int y, t_app *app)
 {
 	t_window	*window;
-	
+
 	window = app->params->window_params;
 	app->params->mouse_x = x;
 	app->params->mouse_y = y;
@@ -19,8 +31,10 @@ int		mouse_hook(int button, int x, int y, t_app *app)
 		else
 		{
 			app->flags->mouse_one_down = 0;
-			app->params->set->c.i = window->min_height + (app->params->mouse_y * window->pixel_height);
-			app->params->set->c.r = window->min_width + (app->params->mouse_x * window->pixel_width);
+			app->params->set->c.i = window->min_height + (app->params->mouse_y
+					* window->pixel_height);
+			app->params->set->c.r = window->min_width + (app->params->mouse_x
+					* window->pixel_width);
 			paint_pattern(app);
 		}
 	}

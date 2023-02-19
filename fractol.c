@@ -1,5 +1,17 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/19 22:26:00 by lsileoni          #+#    #+#             */
+/*   Updated: 2023/02/19 22:26:02 by lsileoni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft/src/libft.h"
+#include "fractol.h"
 #include "minilibx_opengl/mlx.h"
 
 int	render_frame(t_app *app)
@@ -34,11 +46,11 @@ int	render_frame(t_app *app)
 
 void	define_hooks(t_app *app)
 {
-	mlx_hook(app->win, 2, 1L<<0, key_down, app);
-	mlx_hook(app->win, 3, 1L<<0, key_up, app);
-	mlx_hook(app->win, 4, 1L<<0, mouse_hook, app);
-	mlx_hook(app->win, 6, 1L<<0, mouse_movement_hook, app);
-	mlx_hook(app->win, 17, 1L<<0, close_window, app);
+	mlx_hook(app->win, 2, 1L << 0, key_down, app);
+	mlx_hook(app->win, 3, 1L << 0, key_up, app);
+	mlx_hook(app->win, 4, 1L << 0, mouse_hook, app);
+	mlx_hook(app->win, 6, 1L << 0, mouse_movement_hook, app);
+	mlx_hook(app->win, 17, 1L << 0, close_window, app);
 	mlx_loop_hook(app->mlx, render_frame, app);
 }
 
@@ -47,7 +59,7 @@ double	*split_to_double(char **strs)
 	double	*ret;
 	int		count;
 	double	neg;
-	
+
 	count = 0;
 	neg = 1.0;
 	while (strs[count])
