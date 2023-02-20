@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:28 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:26:29 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 06:27:45 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,35 @@
 
 int	thorn_check(int x, int y, t_params *p)
 {
-	t_set		*set;
-	t_window	*win;
-	t_complex	Z_orig;
-	t_complex	Z;
-	t_complex	C;
-	t_complex	Z_old;
-	int			iter_max;
-	int			period;
+	t_set			*set;
+	t_window		*win;
+	t_complex		z;
+	t_complex		c;
+	unsigned int	iter_max;
 
 	iter_max = p->iter_max;
 	set = p->set;
 	win = p->window_params;
-	Z.r = 0.7;
-	Z.i = 0.725;
-	C.r = win->min_width + (x * win->pixel_width);
-	C.i = win->min_height + (y * win->pixel_height);
-	Z_old.r = 0.0;
-	Z_old.i = 0.0;
-	period = 0;
-	while (fabs(Z.r) < BOUNDING_BOX && fabs(Z.i) < BOUNDING_BOX && iter_max)
+	z.r = 0.0;
+	z.i = 0.0;
+	c.r = win->min_width + (x * win->pixel_width);
+	c.i = win->min_height + (y * win->pixel_height);
+	while (fabs(z.r) + fabs(z.i) < BOUNDING_BOX && iter_max)
 	{
-		Z_orig = Z;
-		Z = com_mul(Z, Z);
-		Z.r += C.r;
-		Z.i += C.i;
-		if (Z.r == Z_old.r && Z.i == Z_old.i)
-		{
-			iter_max = 0;
-			break ;
-		}
-		period++;
-		if (period > 20)
-		{
-			period = 0;
-			Z_old = Z;
-		}
+		z = com_abs(z);
+		z = com_mul(z, z);
+		z = com_add(z, c);
 		iter_max--;
 	}
 	return ((unsigned char)(iter_max));
+}
+
+static void	z_squared_plus_c(t_complex *z, t_complex *c, t_complex *z_s)
+{
+	z->i = 2.0 * z->r * z->i + c->i;
+	z->r = z_s->r - z_s->i + c->r;
+	z_s->r = z->r * z->r;
+	z_s->i = z->i * z->i;
 }
 
 int	julia_check(int x, int y, t_app *app)
@@ -75,16 +65,22 @@ int	julia_check(int x, int y, t_app *app)
 	}
 	set->z_s.r = set->z.r * set->z.r;
 	set->z_s.i = set->z.i * set->z.i;
-	while (fabs(set->z_s.r) < BOUNDING_BOX && fabs(set->z_s.i) < BOUNDING_BOX
-		&& iter_max)
-	{
-		set->z.i = 2.0 * set->z.r * set->z.i + set->c.i;
-		set->z.r = set->z_s.r - set->z_s.i + set->c.r;
-		set->z_s.r = set->z.r * set->z.r;
-		set->z_s.i = set->z.i * set->z.i;
-		iter_max--;
-	}
+	while (fabs(set->z_s.r) + fabs(set->z_s.i) < BOUNDING_BOX && --iter_max)
+		z_squared_plus_c(&set->z, &set->c, &set->z_s);
 	return ((unsigned char)(iter_max));
+}
+
+static int	cardioid_check(t_set *set)
+{
+	if (set->c.r * (1 + set->c.r * (8 * set->c.r * set->c.r + \
+					(16 * set->c.i * set->c.i - 3))) + \
+					set->c.i * set->c.i * \
+					(9 * set->c.i * set->c.i - 3) < 3.0 / 32 \
+					|| \
+					((set->c.r + 1) * (set->c.r + 1) + set->c.i * \
+					set->c.i) < 1.0 / 16)
+		return (1);
+	return (0);
 }
 
 int	mandelbrot_check(int x, int y, t_params *p)
@@ -102,14 +98,9 @@ int	mandelbrot_check(int x, int y, t_params *p)
 	iter_max = p->iter_max;
 	set->c.r = win->min_width + (x * win->pixel_width);
 	set->c.i = win->min_height + (y * win->pixel_height);
-	while (fabs(set->z.r) < BOUNDING_BOX && fabs(set->z.i) < BOUNDING_BOX
-		&& iter_max)
-	{
-		set->z.i = 2.0 * set->z.r * set->z.i + set->c.i;
-		set->z.r = set->z_s.r - set->z_s.i + set->c.r;
-		set->z_s.r = set->z.r * set->z.r;
-		set->z_s.i = set->z.i * set->z.i;
-		iter_max--;
-	}
+	if (cardioid_check(set))
+		return ((unsigned char)0);
+	while (fabs(set->z.r) + fabs(set->z.i) < BOUNDING_BOX && --iter_max)
+		z_squared_plus_c(&set->z, &set->c, &set->z_s);
 	return ((unsigned char)(iter_max));
 }

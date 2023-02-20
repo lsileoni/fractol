@@ -6,19 +6,23 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:26:08 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 07:09:20 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx_opengl/mlx.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#define KEY_COUNT 10
-#define COLOR_SCHEMES 7
-#define KEY_RANGE 127
-#define BOUNDING_BOX 40.0f
+#ifndef FRACTOL_H
+# define FRACTOL_H
+# define KEY_COUNT 10
+# define COLOR_SCHEMES 7
+# define KEY_RANGE 127
+# define BOUNDING_BOX 40.0f
+# define STARTING_ITERATIONS 52
+# define STARTING_VIEW 1.75f
+# include "minilibx_opengl/mlx.h"
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 enum				e_keys
 {
@@ -45,7 +49,7 @@ enum				e_sets
 {
 	MANDELBROT,
 	JULIA,
-	THORN
+	BURNINGSHIP	
 };
 
 enum				e_colors
@@ -102,8 +106,8 @@ typedef struct s_args
 {
 	unsigned int	x;
 	unsigned int	y;
-	int				pos_one;
-	int				pos_two;
+	double			pos_one;
+	double			pos_two;
 	int				param_count;
 }					t_args;
 
@@ -121,8 +125,8 @@ typedef struct s_params
 
 typedef struct s_flags
 {
-	unsigned char	esc;
 	unsigned char	*key_down_flags;
+	unsigned char	esc;
 	unsigned char	scroll_down;
 	unsigned char	scroll_up;
 	unsigned char	mouse_one_down;
@@ -152,8 +156,8 @@ void				colorboard(unsigned char color, unsigned int pixel,
 						unsigned char iterations, char *buffer);
 void				glow(unsigned char color, unsigned int pixel,
 						unsigned char iters, char *buf);
-void				solid(unsigned char color, unsigned int pixel, unsigned char iters,
-						char *buf);
+void				solid(unsigned char color, unsigned int pixel, \
+						unsigned char iters, char *buf);
 int					mandelbrot_check(int x, int y, t_params *p);
 int					julia_check(int x, int y, t_app *app);
 int					thorn_check(int x, int y, t_params *p);
@@ -174,8 +178,12 @@ void				zoom_in_complex(t_app *app, int x, int y);
 t_complex			com_mul(t_complex a, t_complex b);
 t_complex			com_add(t_complex a, t_complex b);
 t_complex			com_div(t_complex x, t_complex y);
+t_complex			com_abs(t_complex a);
 void				check_modifier_actions(t_app *app, t_window *win,
 						unsigned char *key_down_flags);
 void				check_movement_actions(t_app *app, t_window *win,
 						unsigned char *key_down_flags);
 void				check_mouse_actions(t_app *app);
+double				ft_atod(char *str);
+t_set				*argument_parser(int argc, char **argv, t_args *args);
+#endif

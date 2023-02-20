@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:44 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:25:46 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 06:17:29 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,20 @@ t_complex	com_div(t_complex a, t_complex b)
 
 	z.r = (a.r * b.r + a.i * b.i) / (b.r * b.r + b.i * b.i);
 	z.i = (a.i * b.r - a.r * b.i) / (b.r * b.r + b.i * b.i);
+	return (z);
+}
+
+t_complex	com_abs(t_complex a)
+{
+	t_complex	z;
+
+	if (a.r < 0.0)
+		z.r = a.r * -1.0;
+	else
+		z.r = a.r;
+	if (a.i < 0.0)
+		z.i = a.i * -1.0;
+	else
+		z.i = a.i;
 	return (z);
 }

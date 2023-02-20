@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:23 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:26:25 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:14:44 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	put_controls(t_app *app)
 	mlx_string_put(app->mlx, app->win, 5, 60, 0x00000000, "Controls");
 	mlx_string_put(app->mlx, app->win, 5, 80, 0x00000000, "---------------");
 	mlx_string_put(app->mlx, app->win, 5, 100, 0x00000000, \
-			"Arrow keys: Movement");
+										"Arrow keys: Movement");
 	mlx_string_put(app->mlx, app->win, 5, 120, 0x00000000, "Z: Zoom");
 	mlx_string_put(app->mlx, app->win, 5, 140, 0x00000000, "C: Cycle color");
 	mlx_string_put(app->mlx, app->win, 5, 160, 0x00000000, \
-			"I: Increase iterations");
+										"I: Increase iterations");
 	mlx_string_put(app->mlx, app->win, 5, 180, 0x00000000, \
-			"Mouse scroll wheel: Zoom in and out");
+										"Mouse scroll wheel: Zoom in and out");
 	mlx_string_put(app->mlx, app->win, 5, 200, 0x00000000, "H: Toggle help");
 	mlx_string_put(app->mlx, app->win, 5, 220, 0x00000000, "R: Reset position");
 }

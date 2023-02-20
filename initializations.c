@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:15 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:36:54 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 07:04:27 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_set	*init_set(char *set_name)
 		set->set_type = MANDELBROT;
 	else if (!ft_strncmp(set_name, "julia", ft_strlen("julia")))
 		set->set_type = JULIA;
-	else if (!ft_strncmp(set_name, "thorn", ft_strlen("thorn")))
-		set->set_type = THORN;
+	else if (!ft_strncmp(set_name, "burningship", ft_strlen("burningship")))
+		set->set_type = BURNINGSHIP;
 	else
 	{
 		free(set);
@@ -50,7 +50,7 @@ t_framebuffer	*init_framebuffer(t_app *app)
 	return (fb);
 }
 
-static t_flags	*init_flags(t_args *args)
+static t_flags	*init_flags(t_args *args, t_params *p)
 {
 	t_flags	*flags;
 
@@ -68,7 +68,11 @@ static t_flags	*init_flags(t_args *args)
 	if (!args->param_count)
 		flags->mouse_one_down = 1;
 	else
+	{
 		flags->mouse_one_down = 0;
+		p->set->c.r = args->pos_one;
+		p->set->c.i = args->pos_two;
+	}
 	return (flags);
 }
 
@@ -85,7 +89,7 @@ t_app	*init_app(t_params *p, t_args *args)
 	ft_bzero(app, sizeof(t_app));
 	app->params = p;
 	app->params->args = args;
-	flags = init_flags(p->args);
+	flags = init_flags(p->args, p);
 	if (!flags)
 		return (NULL);
 	app->flags = flags;
@@ -104,10 +108,10 @@ t_window	*init_window(int h, int w)
 	win = malloc(sizeof(t_window));
 	if (!win)
 		return (NULL);
-	win->max_width = 2.5;
-	win->min_width = -2.5;
-	win->max_height = 2.5;
-	win->min_height = -2.5;
+	win->max_width = STARTING_VIEW;
+	win->min_width = -STARTING_VIEW;
+	win->max_height = STARTING_VIEW;
+	win->min_height = -STARTING_VIEW;
 	win->window_height = abs(h);
 	win->window_width = abs(w);
 	win->pixel_width = (win->max_width - win->min_width) / win->window_width;
@@ -124,14 +128,14 @@ t_params	*init_params(int h, int w, t_set *set)
 	if (!params)
 		return (NULL);
 	ft_bzero(params, sizeof(t_params));
-	params->window_params = init_window(h, w);
+	params->window_params = init_window(w, h);
 	if (!params->window_params)
 	{
 		free(params);
 		return (NULL);
 	}
 	params->movement_factor = 1;
-	params->iter_max = 52;
+	params->iter_max = STARTING_ITERATIONS;
 	params->set = set;
 	return (params);
 }
