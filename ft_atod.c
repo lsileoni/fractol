@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 01:42:50 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 07:01:48 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 09:16:33 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ static double	parse_left(const char *str)
 	while (*str != '-' && *str != '+' && !ft_isdigit(*str) && *str)
 		str++;
 	malloc_size = leftlen(str);
+	if (!malloc_size)
+		return (0.0);
 	left = malloc(malloc_size + 1);
+	if (!left)
+		return (0.0);
 	i = 0;
 	while (str[i] != '.')
 	{
@@ -70,6 +74,8 @@ static double	parse_right(const char *str)
 	while (str[i])
 		i++;
 	right = malloc(i + 1);
+	if (!right)
+		return (0.0);
 	i = 0;
 	while (str[i])
 	{
