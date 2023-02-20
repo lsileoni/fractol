@@ -6,13 +6,13 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 07:19:15 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:27:12 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define KEY_COUNT 10
+# define KEY_COUNT 11
 # define COLOR_SCHEMES 7
 # define KEY_RANGE 127
 # define BOUNDING_BOX 40.0f
@@ -35,7 +35,8 @@ enum				e_keys
 	Z_KEY = 6,
 	C_KEY = 8,
 	H_KEY = 4,
-	R_KEY = 15
+	R_KEY = 15,
+	S_KEY = 1
 };
 
 enum				e_buttons
@@ -161,10 +162,9 @@ void				solid(unsigned char color, unsigned int pixel, \
 int					mandelbrot_check(int x, int y, t_params *p);
 int					julia_check(int x, int y, t_app *app);
 int					ship_check(int x, int y, t_params *p);
-t_set				*init_set(char *set_name);
-t_framebuffer		*init_framebuffer(t_app *vars);
-t_app				*init_app(t_params *p, t_args *args);
-t_params			*init_params(int h, int w, t_set *set);
+int					init_set(char *set_name, t_set *set);
+int					init_app(t_params *p, t_args *args, t_app *app);
+int					init_params(int h, int w, t_set *set, t_params *params);
 void				zoom_out_static(t_app *vars);
 int					close_window(t_app *vars);
 int					key_down(int key, t_app *vars);
@@ -185,5 +185,5 @@ void				check_movement_actions(t_app *app, t_window *win,
 						unsigned char *key_down_flags);
 void				check_mouse_actions(t_app *app);
 double				ft_atod(char *str);
-t_set				*argument_parser(int argc, char **argv, t_args *args);
+int	argument_parser(int argc, char **argv, t_args *args, t_set *set);
 #endif

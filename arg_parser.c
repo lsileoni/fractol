@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 07:00:52 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 07:01:17 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:25:02 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	check_six(t_args *args, t_set *set, char **argv)
 		args->y = ft_atoi(argv[5]);
 	}
 	else
-		printf("A parameter count of 4 only works with a Julia set\n");
+		ft_printf("A parameter count of 4 only works with a Julia set\n");
 }
 
 static void	check_four(t_args *args, t_set *set, char **argv)
@@ -44,16 +44,8 @@ static void	check_four(t_args *args, t_set *set, char **argv)
 	}
 }
 
-static t_set	*check_two_up(t_args *args, char **argv, int argc)
+static int	check_two_up(t_args *args, char **argv, int argc, t_set *set)
 {
-	t_set	*set;
-
-	set = init_set(argv[1]);
-	if (!(set))
-	{
-		free(args);
-		return (NULL);
-	}
 	if (argc == 2)
 	{
 		args->x = 500;
@@ -66,24 +58,23 @@ static t_set	*check_two_up(t_args *args, char **argv, int argc)
 	else
 	{
 		ft_printf("Invalid number of parameters!\n");
-		return (NULL);
+		return (0);
 	}
-	return (set);
+	return (1);
 }
 
-t_set	*argument_parser(int argc, char **argv, t_args *args)
+int	argument_parser(int argc, char **argv, t_args *args, t_set *set)
 {
-	t_set	*set;
-
-	set = NULL;
-	if (!args)
-		return (NULL);
+	if (!args || !set || !argv)
+		return (0);
 	args->param_count = 0;
 	if (argc < 2)
 	{
 		ft_printf("Not enough arguments given!\n");
-		return (NULL);
+		return (0);
 	}
-	set = check_two_up(args, argv, argc);
-	return (set);
+	init_set(argv[1], set);
+	if (!check_two_up(args, argv, argc, set))
+		return (0);
+	return (1);
 }

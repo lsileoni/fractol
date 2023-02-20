@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:11 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:26:11 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:18:06 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ int	key_down(int key, t_app *app)
 		app->draw_text *= -1;
 		paint_pattern(app);
 	}
+	if (key == S_KEY)
+	{
+		if (app->params->set->set_type == JULIA)
+			app->params->set->set_type = BURNINGSHIP;
+		else if (app->params->set->set_type == MANDELBROT)
+			app->params->set->set_type = JULIA;
+		else
+			app->params->set->set_type = MANDELBROT;
+		paint_pattern(app);
+	}
 	switchboard(key, app, 1);
 	return (0);
 }
@@ -78,12 +88,8 @@ int	close_window(t_app *app)
 	mlx_destroy_image(app->mlx, app->img);
 	mlx_destroy_window(app->mlx, app->win);
 	free(app->params->window_params);
-	free(app->params->set);
-	free(app->params);
 	free(app->flags->key_down_flags);
-	free(app->fb);
 	free(app->flags);
-	free(app);
 	exit(0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:54 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:29:31 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 07:44:22 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	reset_view(t_app *app, t_window *w)
 {
-	w->max_width = 2.5;
-	w->min_width = -2.5;
-	w->max_height = 2.5;
-	w->min_height = -2.5;
+	w->max_width = STARTING_VIEW;
+	w->min_width = -STARTING_VIEW;
+	w->max_height = STARTING_VIEW;
+	w->min_height = -STARTING_VIEW;
 	app->params->movement_factor = 1.0;
-	app->params->iter_max = 50;
+	app->params->iter_max = STARTING_ITERATIONS;
 	w->pixel_width = (w->max_width - w->min_width) / w->window_width;
 	w->pixel_height = (w->max_height - w->min_height) / w->window_height;
 }

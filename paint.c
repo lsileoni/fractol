@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:23 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 07:18:48 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:25:24 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ static void	put_controls(t_app *app)
 										"Mouse scroll wheel: Zoom in and out");
 	mlx_string_put(app->mlx, app->win, 5, 200, 0x00000000, "H: Toggle help");
 	mlx_string_put(app->mlx, app->win, 5, 220, 0x00000000, "R: Reset position");
+	mlx_string_put(app->mlx, app->win, 5, 240, 0x00000000, "S: Switch set");
+	mlx_string_put(app->mlx, app->win, 5, 260, 0x00000000, \
+										"ESC/X: Quit application");
 }
 
 static void	color_buffer(char *buf, unsigned char iters, int pixel, t_params *p)

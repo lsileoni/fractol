@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:00 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 06:59:20 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:28:50 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ int	render_frame(t_app *app)
 	{
 		mlx_destroy_image(app->mlx, app->img);
 		mlx_destroy_window(app->mlx, app->win);
-		free(key_down);
 		free(app->params->window_params);
-		free(app->params->set);
-		free(app->params);
-		free(app->fb);
+		free(app->flags->key_down_flags);
 		free(app->flags);
-		free(app);
 		exit(0);
 		return (0);
 	}
@@ -44,7 +40,7 @@ int	render_frame(t_app *app)
 	return (0);
 }
 
-void	define_hooks(t_app *app)
+static void	define_hooks(t_app *app)
 {
 	mlx_hook(app->win, 2, 1L << 0, key_down, app);
 	mlx_hook(app->win, 3, 1L << 0, key_up, app);
@@ -54,47 +50,33 @@ void	define_hooks(t_app *app)
 	mlx_loop_hook(app->mlx, render_frame, app);
 }
 
+static void	init_framebuffer(t_app *app, t_framebuffer *fb)
+{
+	ft_bzero(fb, sizeof(t_framebuffer));
+	fb->buffer = mlx_get_data_addr(app->img, &fb->pixel_bits, &fb->line_bytes,
+			&fb->endian);
+}
+
 int	main(int argc, char **argv)
 {
-	t_app			*app;
-	t_set			*set;
-	t_params		*params;
-	t_framebuffer	*fb;
-	t_args			*args;
+	t_app			app;
+	t_set			set;
+	t_params		params;
+	t_framebuffer	fb;
+	t_args			args;
 
-	args = malloc(sizeof(t_args));
-	set = argument_parser(argc, argv, args);
-	if (!(set))
+	argument_parser(argc, argv, &args, &set);
+	if (!(init_params(args.x, args.y, &set, &params)))
+		exit(1);
+	if (!(init_app(&params, &args, &app)))
 	{
-		if (args)
-			free(args);
+		free(params.window_params);
 		exit(1);
 	}
-	params = init_params(args->x, args->y, set);
-	if (!(params))
-	{
-		free(set);
-		free(args);
-		exit(1);
-	}
-	app = init_app(params, args);
-	if (!(app))
-	{
-		free(set);
-		free(args);
-		free(params);
-		exit(1);
-	}
-	fb = init_framebuffer(app);
-	if (!(fb))
-	{
-		free(params);
-		free(set);
-		free(app);
-	}
-	app->fb = fb;
-	define_hooks(app);
-	paint_pattern(app);
-	mlx_loop(app->mlx);
+	init_framebuffer(&app, &fb);
+	app.fb = &fb;
+	define_hooks(&app);
+	paint_pattern(&app);
+	mlx_loop(app.mlx);
 	return (0);
 }
