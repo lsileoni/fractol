@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:00 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 08:28:50 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 09:48:59 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int	main(int argc, char **argv)
 	t_framebuffer	fb;
 	t_args			args;
 
-	argument_parser(argc, argv, &args, &set);
+	if(!argument_parser(argc, argv, &args, &set))
+		exit(1);
 	if (!(init_params(args.x, args.y, &set, &params)))
 		exit(1);
 	if (!(init_app(&params, &args, &app)))
