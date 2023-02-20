@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 07:00:52 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 10:22:00 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:08:11 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ static int	check_two_up(t_args *args, char **argv, int argc, t_set *set)
 	return (1);
 }
 
+static void	print_help(void)
+{
+	ft_printf("Program usage\n-------------------------\n");
+	ft_printf("Static fractals: ./fractol  {mandelbrot/burningship}");
+	ft_printf(" \t\t{optional x and y resolution}\n");
+	ft_printf("Dynamic fractals: ./fractol {julia} {optional r and i coords}");
+	ft_printf("   {optional x and y resolution}\n");
+}
+
 int	argument_parser(int argc, char **argv, t_args *args, t_set *set)
 {
 	if (!args || !set || !argv)
@@ -70,11 +79,7 @@ int	argument_parser(int argc, char **argv, t_args *args, t_set *set)
 	args->param_count = 0;
 	if (argc < 2)
 	{
-		ft_printf("Program usage\n-------------------------\n");
-		ft_printf("Static fractals: ./fractol  {mandelbrot/burningship}");
-		ft_printf(" \t\t{optional x and y resolution}\n");
-		ft_printf("Dynamic fractals: ./fractol {julia} {optional r and i coords}");
-		ft_printf("   {optional x and y resolution}\n");
+		print_help();
 		return (0);
 	}
 	if (!init_set(argv[1], set))
