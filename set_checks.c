@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:28 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 07:18:59 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:16:21 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	julia_check(int x, int y, t_app *app)
 	set = p->set;
 	win = p->window_params;
 	iter_max = p->iter_max;
-	set->z.i = win->min_height + (y * win->pixel_height);
+	set->z.i = (win->min_height + (y * win->pixel_height)) * -1.0;
 	set->z.r = win->min_width + (x * win->pixel_width);
 	if (app->flags->mouse_one_down)
 	{

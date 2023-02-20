@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 07:00:52 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 13:08:11 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:09:17 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	check_two_up(t_args *args, char **argv, int argc, t_set *set)
 static void	print_help(void)
 {
 	ft_printf("Program usage\n-------------------------\n");
-	ft_printf("Static fractals: ./fractol  {mandelbrot/burningship}");
+	ft_printf("Static fractals:  ./fractol {mandelbrot/burningship}");
 	ft_printf(" \t\t{optional x and y resolution}\n");
 	ft_printf("Dynamic fractals: ./fractol {julia} {optional r and i coords}");
 	ft_printf("   {optional x and y resolution}\n");
