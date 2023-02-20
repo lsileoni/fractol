@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:23 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 23:14:44 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 07:18:48 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	paint_pixel(t_app *app, t_window *win, \
 		color_buffer(fb->buffer, (unsigned char)julia_check(win->x, \
 					win->y, app), fb->pixel, app->params);
 	else
-		color_buffer(fb->buffer, (unsigned char)thorn_check(win->x, \
+		color_buffer(fb->buffer, (unsigned char)ship_check(win->x, \
 					win->y, app->params), fb->pixel, app->params);
 }
 

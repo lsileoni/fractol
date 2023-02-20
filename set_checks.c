@@ -6,13 +6,13 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:28 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 06:27:45 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 07:18:59 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	thorn_check(int x, int y, t_params *p)
+int	ship_check(int x, int y, t_params *p)
 {
 	t_set			*set;
 	t_window		*win;

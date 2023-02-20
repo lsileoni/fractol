@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 07:09:20 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 07:19:15 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void				solid(unsigned char color, unsigned int pixel, \
 						unsigned char iters, char *buf);
 int					mandelbrot_check(int x, int y, t_params *p);
 int					julia_check(int x, int y, t_app *app);
-int					thorn_check(int x, int y, t_params *p);
+int					ship_check(int x, int y, t_params *p);
 t_set				*init_set(char *set_name);
 t_framebuffer		*init_framebuffer(t_app *vars);
 t_app				*init_app(t_params *p, t_args *args);
