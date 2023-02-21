@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 08:27:12 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/21 21:44:34 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,9 @@ typedef struct s_app
 	int				draw_text;
 }					t_app;
 
+typedef void	(*t_fp)(unsigned char c, unsigned int pixel, \
+						unsigned char i, char *b);
+
 void				paint_pattern(t_app *app);
 void				switchboard(int key, t_app *app, unsigned char up_down);
 void				handle_mouse_zoom(int key, t_complex z, t_app *vars);
@@ -173,7 +176,7 @@ int					mouse_pos(int x, int y, t_app *vars);
 int					mouse_hook(int button, int x, int y, t_app *app);
 int					mouse_movement_hook(int x, int y, t_app *app);
 void				zoom_out_static(t_app *app);
-void				zoom_in_static(t_params *p);
+void				zoom_in_static(t_app *app, t_params *p);
 void				zoom_in_complex(t_app *app, int x, int y);
 t_complex			com_mul(t_complex a, t_complex b);
 t_complex			com_add(t_complex a, t_complex b);
@@ -185,5 +188,7 @@ void				check_movement_actions(t_app *app, t_window *win,
 						unsigned char *key_down_flags);
 void				check_mouse_actions(t_app *app);
 double				ft_atod(char *str);
-int	argument_parser(int argc, char **argv, t_args *args, t_set *set);
+int					argument_parser(int argc, char **argv, t_args *args, t_set *set);
+double				parse_left(const char *str, unsigned char *error);
+double				parse_right(const char *str, unsigned char *error);
 #endif

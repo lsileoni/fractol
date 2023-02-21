@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:39 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:43:56 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:26:40 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	zoom_out_static(t_app *app)
 	paint_pattern(app);
 }
 
-void	zoom_in_static(t_app *app, t_params *p)
+void	zoom_in_static(t_params *p)
 {
 	t_window	*win;
 
@@ -51,7 +51,6 @@ void	zoom_in_static(t_app *app, t_params *p)
 	win->pixel_height = (win->max_height - win->min_height)
 		/ win->window_height;
 	p->movement_factor *= 2;
-	paint_pattern(app);
 }
 
 void	zoom_in_complex(t_app *app, int x, int y)

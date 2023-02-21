@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:54 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:44:09 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 07:44:22 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	check_modifier_actions(t_app *app, t_window *win,
 		paint_pattern(app);
 	}
 	if (key_down_flags[Z_KEY])
-		zoom_in_static(app, app->params);
+	{
+		zoom_in_static(app->params);
+		paint_pattern(app);
+	}
 	if (key_down_flags[R_KEY])
 	{
 		reset_view(app, win);
@@ -76,9 +79,13 @@ void	check_mouse_actions(t_app *app)
 
 	flags = app->flags;
 	if (app->flags->scroll_up)
+	{
 		zoom_in_complex(app, app->params->mouse_x, app->params->mouse_y);
+	}
 	if (app->flags->scroll_down)
+	{
 		zoom_out_static(app);
+	}
 	if (app->flags->mouse_moved)
 	{
 		if (app->flags->mouse_one_down)

@@ -1,7 +1,7 @@
 CC=cc
-CFLAGS= -Wall -Wextra -Werror -g -Ofast -march=skylake
+CFLAGS= -Wall -Wextra -Werror -g -march=skylake -Ofast
 INCLUDES=-L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include -L./libft/build/ -lft
-CFILES=fractol.c switchboard.c color_handler.c colorschemes.c set_checks.c initializations.c complex_utilities.c hooks.c zoom_handlers.c paint.c event_checks.c ft_atod.c arg_parser.c
+CFILES=fractol.c switchboard.c color_handler.c colorschemes.c set_checks.c initializations.c complex_utilities.c hooks.c zoom_handlers.c paint.c event_checks.c ft_atod.c arg_parser.c double_parsing.c
 OFILES=$(CFILES:.c=.o)
 
 NAME=fractol

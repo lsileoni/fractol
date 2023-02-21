@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:28 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 13:54:56 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:16:21 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ int	ship_check(int x, int y, t_params *p)
 {
 	t_set			*set;
 	t_window		*win;
+	t_complex		z;
+	t_complex		c;
 	unsigned int	iter_max;
 
 	iter_max = p->iter_max;
 	set = p->set;
 	win = p->window_params;
-	set->z.r = 0.0;
-	set->z.i = 0.0;
-	set->c.r = win->min_width + (x * win->pixel_width);
-	set->c.i = win->min_height + (y * win->pixel_height);
-	while (fabs(set->z.r) + fabs(set->z.i) < BOUNDING_BOX && iter_max)
+	z.r = 0.0;
+	z.i = 0.0;
+	c.r = win->min_width + (x * win->pixel_width);
+	c.i = win->min_height + (y * win->pixel_height);
+	while (fabs(z.r) + fabs(z.i) < BOUNDING_BOX && iter_max)
 	{
-		set->z = com_abs(set->z);
-		set->z = com_mul(set->z, set->z);
-		set->z = com_add(set->z, set->c);
+		z = com_abs(z);
+		z = com_mul(z, z);
+		z = com_add(z, c);
 		iter_max--;
 	}
 	return ((unsigned char)(iter_max));

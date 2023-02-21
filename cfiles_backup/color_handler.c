@@ -6,11 +6,14 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:22 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:02:41 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:25:25 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+typedef void	(*t_fp)(unsigned char c, unsigned int pixel, \
+						unsigned char i, char *b);
 
 static void	assign_functions(t_fp *functions)
 {
