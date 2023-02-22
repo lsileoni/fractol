@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:54 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:44:09 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:56:54 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ void	check_mouse_actions(t_app *app)
 	{
 		if (app->flags->mouse_one_down)
 			paint_pattern(app);
-		app->flags->mouse_moved = 0;
 	}
 }

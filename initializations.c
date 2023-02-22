@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:15 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 08:29:21 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:13:31 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,23 @@ static t_flags	*init_flags(t_args *args, t_params *p)
 
 	flags = malloc(sizeof(t_flags));
 	if (!flags)
+	{
+		perror("Failed to allocate key_down_flags!\n");
 		return (NULL);
+	}
 	ft_bzero(flags, sizeof(t_flags));
 	flags->key_down_flags = malloc(KEY_RANGE + 1);
 	if (!flags->key_down_flags)
 	{
+		perror("Failed to allocate key_down_flags!\n");
 		free(flags);
 		return (NULL);
 	}
-	ft_bzero(flags->key_down_flags, KEY_RANGE);
+	ft_bzero(flags->key_down_flags, KEY_RANGE + 1);
 	if (!args->param_count)
 		flags->mouse_one_down = 1;
 	else
 	{
-		flags->mouse_one_down = 0;
 		p->set->c.r = args->pos_one;
 		p->set->c.i = args->pos_two;
 	}
@@ -71,6 +74,11 @@ int	init_app(t_params *p, t_args *args, t_app *app)
 	app->img = mlx_new_image(app->mlx, win->window_width, win->window_height);
 	app->win = mlx_new_window(app->mlx, win->window_width, win->window_height,
 			"fractol");
+	if (!app->mlx || !app->img || !app->win)
+	{
+		ft_printf("mlx failed to initialize!\n");
+		return (0);
+	}
 	return (1);
 }
 
@@ -93,10 +101,11 @@ t_window	*init_window(int h, int w)
 	return (win);
 }
 
-int	init_params(int h, int w, t_set *set, t_params *params)
+int	init_params(int window_width, int window_height, \
+				t_set *set, t_params *params)
 {
 	ft_bzero(params, sizeof(t_params));
-	params->window_params = init_window(w, h);
+	params->window_params = init_window(window_height, window_width);
 	if (!params->window_params)
 		return (0);
 	params->movement_factor = 1;

@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:28 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 13:54:56 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:09:51 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ship_check(int x, int y, t_params *p)
 {
-	t_set			*set;
 	t_window		*win;
+	t_set			*set;
 	unsigned int	iter_max;
 
 	iter_max = p->iter_max;

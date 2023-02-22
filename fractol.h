@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:44:34 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:13:11 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int					julia_check(int x, int y, t_app *app);
 int					ship_check(int x, int y, t_params *p);
 int					init_set(char *set_name, t_set *set);
 int					init_app(t_params *p, t_args *args, t_app *app);
-int					init_params(int h, int w, t_set *set, t_params *params);
+int					init_params(int window_width, int window_height, t_set *set, t_params *params);
 void				zoom_out_static(t_app *vars);
 int					close_window(t_app *vars);
 int					key_down(int key, t_app *vars);

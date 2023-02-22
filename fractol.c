@@ -6,15 +6,15 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:00 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 17:32:56 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:52:39 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/src/libft.h"
 #include "fractol.h"
+#include "./libft/src/libft.h"
 #include "minilibx_opengl/mlx.h"
 
-int	render_frame(t_app *app)
+static int	render_frame(t_app *app)
 {
 	unsigned char	mouse_one_down;
 	unsigned char	*key_down;
@@ -71,6 +71,10 @@ int	main(int argc, char **argv)
 		exit(1);
 	if (!(init_app(&params, &args, &app)))
 	{
+		if (app.img)
+			mlx_destroy_image(app.mlx, app.img);
+		if (app.win)
+			mlx_destroy_window(app.mlx, app.win);
 		free(params.window_params);
 		exit(1);
 	}
