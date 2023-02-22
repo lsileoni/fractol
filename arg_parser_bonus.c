@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_parser.c                                       :+:      :+:    :+:   */
+/*   arg_parser_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 07:00:52 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:34:40 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:26:59 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "./libft/src/libft.h"
+#include "fractol_bonus.h"
 
 static int	check_six(t_args *args, t_set *set, char **argv)
 {

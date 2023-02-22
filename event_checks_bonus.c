@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_checks.c                                     :+:      :+:    :+:   */
+/*   event_checks_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:54 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 16:56:54 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:09:54 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static void	reset_view(t_app *app, t_window *w)
 {

@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:28 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 17:09:51 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:07:54 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ int	julia_check(int x, int y, t_app *app)
 	iter_max = p->iter_max;
 	set->z.i = (win->min_height + (y * win->pixel_height)) * -1.0;
 	set->z.r = win->min_width + (x * win->pixel_width);
-	if (app->flags->mouse_one_down)
-	{
-		set->c.i = win->min_height + (p->mouse_y * win->pixel_height);
-		set->c.r = win->min_width + (p->mouse_x * win->pixel_width);
-	}
 	set->z_s.r = set->z.r * set->z.r;
 	set->z_s.i = set->z.i * set->z.i;
 	while (fabs(set->z_s.r) + fabs(set->z_s.i) < BOUNDING_BOX && --iter_max)
@@ -98,7 +93,7 @@ int	mandelbrot_check(int x, int y, t_params *p)
 	set->c.i = win->min_height + (y * win->pixel_height);
 	if (cardioid_check(set))
 		return ((unsigned char)0);
-	while (fabs(set->z.r) + fabs(set->z.i) < BOUNDING_BOX && --iter_max)
+	while (fabs(set->z_s.r) + fabs(set->z_s.i) < BOUNDING_BOX && --iter_max)
 		z_squared_plus_c(&set->z, &set->c, &set->z_s);
 	return ((unsigned char)(iter_max));
 }

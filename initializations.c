@@ -6,11 +6,10 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:15 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 17:13:31 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:16:29 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/src/libft.h"
 #include "fractol.h"
 
 int	init_set(char *set_name, t_set *set)
@@ -20,8 +19,6 @@ int	init_set(char *set_name, t_set *set)
 		set->set_type = MANDELBROT;
 	else if (!ft_strncmp(set_name, "julia", ft_strlen("julia")))
 		set->set_type = JULIA;
-	else if (!ft_strncmp(set_name, "burningship", ft_strlen("burningship")))
-		set->set_type = BURNINGSHIP;
 	else
 		return (0);
 	return (1);
@@ -46,13 +43,8 @@ static t_flags	*init_flags(t_args *args, t_params *p)
 		return (NULL);
 	}
 	ft_bzero(flags->key_down_flags, KEY_RANGE + 1);
-	if (!args->param_count)
-		flags->mouse_one_down = 1;
-	else
-	{
-		p->set->c.r = args->pos_one;
-		p->set->c.i = args->pos_two;
-	}
+	p->set->c.r = args->pos_one;
+	p->set->c.i = args->pos_two;
 	return (flags);
 }
 
@@ -69,7 +61,6 @@ int	init_app(t_params *p, t_args *args, t_app *app)
 	if (!flags)
 		return (0);
 	app->flags = flags;
-	app->draw_text = 1;
 	app->mlx = mlx_init();
 	app->img = mlx_new_image(app->mlx, win->window_width, win->window_height);
 	app->win = mlx_new_window(app->mlx, win->window_width, win->window_height,

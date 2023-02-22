@@ -6,21 +6,17 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:00 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 16:52:39 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:15:46 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "./libft/src/libft.h"
-#include "minilibx_opengl/mlx.h"
 
 static int	render_frame(t_app *app)
 {
-	unsigned char	mouse_one_down;
 	unsigned char	*key_down;
 
 	key_down = app->flags->key_down_flags;
-	mouse_one_down = app->flags->mouse_one_down;
 	if (key_down[ESC])
 	{
 		mlx_destroy_image(app->mlx, app->img);
@@ -32,11 +28,9 @@ static int	render_frame(t_app *app)
 		return (0);
 	}
 	check_mouse_actions(app);
-	check_modifier_actions(app, app->params->window_params, key_down);
-	check_movement_actions(app, app->params->window_params, key_down);
+	check_modifier_actions(app, key_down);
 	ft_bzero(app->flags, sizeof(t_flags));
 	app->flags->key_down_flags = key_down;
-	app->flags->mouse_one_down = mouse_one_down;
 	return (0);
 }
 
@@ -45,7 +39,6 @@ static void	define_hooks(t_app *app)
 	mlx_hook(app->win, 2, 1L << 0, key_down, app);
 	mlx_hook(app->win, 3, 1L << 0, key_up, app);
 	mlx_hook(app->win, 4, 1L << 0, mouse_hook, app);
-	mlx_hook(app->win, 6, 1L << 0, mouse_movement_hook, app);
 	mlx_hook(app->win, 17, 1L << 0, close_window, app);
 	mlx_loop_hook(app->mlx, render_frame, app);
 }

@@ -6,16 +6,14 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 07:00:52 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:34:40 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:15:26 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "./libft/src/libft.h"
 
 static int	check_six(t_args *args, t_set *set, char **argv)
 {
-	args->param_count = 4;
 	if (set->set_type == JULIA)
 	{
 		args->pos_one = ft_atod(argv[2]);
@@ -33,7 +31,6 @@ static int	check_six(t_args *args, t_set *set, char **argv)
 
 static void	check_four(t_args *args, t_set *set, char **argv)
 {
-	args->param_count = 2;
 	if (set->set_type == JULIA)
 	{
 		args->pos_one = ft_atod(argv[2]);
@@ -52,6 +49,8 @@ static int	check_two_up(t_args *args, char **argv, int argc, t_set *set)
 {
 	if (argc == 2)
 	{
+		args->pos_one = 0.0;
+		args->pos_two = 0.0;
 		args->x = 650;
 		args->y = 650;
 	}
@@ -73,21 +72,18 @@ static int	check_two_up(t_args *args, char **argv, int argc, t_set *set)
 static void	print_help(void)
 {
 	ft_printf("\nProgram usage\n-------------------------\n");
-	ft_printf("Static fractals:  ./fractol {mandelbrot/burningship}");
-	ft_printf(" \t\t{optional x and y resolution}\n");
-	ft_printf("Dynamic fractals: ./fractol {julia} {optional r and i coords}");
-	ft_printf("   {optional x and y resolution}\n\n");
+	ft_printf("Static fractals:  ./fractol {mandelbrot/julia}\n");
+	ft_printf("Mandelbrot parameters: {width height}\n");
+	ft_printf("Julia parameters: {c.r c.i width height}\n\n");
 	ft_printf("Examples\n-------------------------\n");
 	ft_printf("./fractol julia 0.8 0.0 800 800\n");
 	ft_printf("./fractol mandelbrot 800 800\n");
-	ft_printf("./fractol burningship\n\n");
 }
 
 int	argument_parser(int argc, char **argv, t_args *args, t_set *set)
 {
 	if (!args || !set || !argv)
 		return (0);
-	args->param_count = 0;
 	if (argc < 2)
 	{
 		print_help();

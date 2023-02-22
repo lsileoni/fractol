@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:11 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 08:18:06 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:31:55 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/src/libft.h"
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 int	mouse_hook(int button, int x, int y, t_app *app)
 {
@@ -72,7 +71,7 @@ int	key_down(int key, t_app *app)
 			app->params->set->set_type = MANDELBROT;
 		paint_pattern(app);
 	}
-	switchboard(key, app, 1);
+	switchboard(key, app);
 	return (0);
 }
 

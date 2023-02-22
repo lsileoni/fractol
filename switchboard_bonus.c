@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   switchboard.c                                      :+:      :+:    :+:   */
+/*   switchboard_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:33 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 08:25:46 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:32:22 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static int	valid_key(int key)
 {
@@ -29,13 +29,8 @@ static int	valid_key(int key)
 	return (0);
 }
 
-void	switchboard(int key, t_app *app, unsigned char up_down)
+void	switchboard(int key, t_app *app)
 {
 	if (valid_key(key))
-	{
-		if (up_down)
-			app->flags->key_down_flags[key] = 1;
-		else
-			app->flags->key_down_flags[key] = 0;
-	}
+		app->flags->key_down_flags[key] = 1;
 }

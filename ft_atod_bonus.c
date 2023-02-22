@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atod.c                                          :+:      :+:    :+:   */
+/*   ft_atod_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 01:42:50 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 20:34:27 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:27:35 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "./libft/src/libft.h"
-#include <stdio.h>
-#include <math.h>
+#include "fractol_bonus.h"
 
 static int	is_negative(const char *str)
 {

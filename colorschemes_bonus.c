@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colorschemes.c                                     :+:      :+:    :+:   */
+/*   colorschemes_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:32 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/19 22:25:33 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:09:34 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 void	energy(unsigned char color, unsigned int pixel, unsigned char iters,
 		char *buf)

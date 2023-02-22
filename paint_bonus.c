@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paint.c                                            :+:      :+:    :+:   */
+/*   paint_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:23 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/20 10:29:20 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:27:52 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/src/libft.h"
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static void	put_controls(t_app *app)
 {

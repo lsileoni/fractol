@@ -6,12 +6,11 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:24:59 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 15:48:06 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:15:34 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "./libft/src/libft.h"
 
 static int	leftlen(const char *str)
 {

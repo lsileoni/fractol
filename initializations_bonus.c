@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initializations.c                                  :+:      :+:    :+:   */
+/*   initializations_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:15 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 17:13:31 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:27:45 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/src/libft.h"
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 int	init_set(char *set_name, t_set *set)
 {

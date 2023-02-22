@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:39 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 17:12:52 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:16:54 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,6 @@ void	zoom_out_static(t_app *app)
 	win->pixel_width = (win->max_width - win->min_width) / win->window_width;
 	win->pixel_height = (win->max_height - win->min_height)
 		/ win->window_height;
-	paint_pattern(app);
-}
-
-void	zoom_in_static(t_app *app, t_params *p)
-{
-	t_window	*win;
-
-	win = p->window_params;
-	win->x_midpoint = (win->max_width + win->min_width) / 2.0;
-	win->max_width = (win->max_width + win->x_midpoint) / 2.0;
-	win->min_width = (win->min_width + win->x_midpoint) / 2.0;
-	win->y_midpoint = (win->min_height + win->max_height) / 2.0;
-	win->max_height = (win->max_height + win->y_midpoint) / 2.0;
-	win->min_height = (win->min_height + win->y_midpoint) / 2.0;
-	win->pixel_width = (win->max_width - win->min_width) / win->window_width;
-	win->pixel_height = (win->max_height - win->min_height)
-		/ win->window_height;
-	p->movement_factor *= 2.0;
 	paint_pattern(app);
 }
 
