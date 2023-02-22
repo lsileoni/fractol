@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:24:59 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/21 21:38:33 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:48:06 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static double	get_left_double(const char *str, char *left)
 	unsigned int	i;
 
 	i = 0;
-	while (str[i] != '.')
+	while (str[i] != '.' && str[i])
 	{
 		left[i] = str[i];
 		i++;
