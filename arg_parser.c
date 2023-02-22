@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 07:00:52 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 23:14:37 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:19:18 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static int	check_two_up(t_args *args, char **argv, int argc, t_set *set)
 	}
 	return (1);
 }
-
 
 int	argument_parser(int argc, char **argv, t_args *args, t_set *set)
 {
