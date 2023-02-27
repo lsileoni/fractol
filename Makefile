@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS= -Wall -Wextra -Werror -g -march=skylake -Ofast
+CFLAGS= -Wall -Wextra -Werror -g -march=native -Ofast
 INCLUDES=-L./minilibx/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include -L./libft/build/ -lft -lm
 
 CFILES=fractol.c \
