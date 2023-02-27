@@ -13,7 +13,7 @@ make bonus
 https://github.com/dannywillems/minilibx-mac-osx
 
 ## Previews
-![Julia gif](https://i.imgur.com/tbsNitw.mp4)
+![Julia gif](https://i.imgur.com/TILWm9i.gif)
 ![Minibrot](https://i.imgur.com/6Efc0tb.png)
 ![Burning ship](https://i.imgur.com/Q4uh5hH.png)
 ![Julia](https://i.imgur.com/MHYmwb1.png)
