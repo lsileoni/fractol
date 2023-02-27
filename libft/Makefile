@@ -129,11 +129,8 @@ $(OBJS): $(CFILES)
 	make all -C ./src/print/ft_printf
 	make all -C ./src/memory
 	make all -C ./src/string
-	make all -C ./src/vector
-	make all -C ./src/hashmap
 	make all -C ./src/conversion
 	make all -C ./src/linkedlist
-	make all -C ./src/dlinkedlist
 	make all -C ./src/validation
 
 clean:

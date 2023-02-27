@@ -6,13 +6,13 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/27 11:38:05 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:26:39 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_BONUS_H
 # define FRACTOL_BONUS_H
-# include "minilibx_opengl/mlx.h"
+# include "minilibx/mlx.h"
 # include "./libft/src/libft.h"
 # include <math.h>
 # include <stdio.h>

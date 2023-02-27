@@ -1,6 +1,6 @@
 CC=cc
 CFLAGS= -Wall -Wextra -Werror -g -march=skylake -Ofast
-INCLUDES=-L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include -L./libft/build/ -lft -lm
+INCLUDES=-L./minilibx_opengl/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include -L./libft/build/ -lft -lm
 
 CFILES=fractol.c \
 	   switchboard.c \
@@ -35,12 +35,14 @@ BOFILES=$(BFILES:.c=.o)
 
 NAME=./build/mandatory/fractol
 BNAME=./build/bonus/fractol
+MINILIBX=./minilibx/libmlx.a
+LIBFT=./libft/build/libft.a
 
 all: $(NAME)
 
 bonus: $(BNAME)
 
-$(NAME): $(OFILES)
+$(NAME): $(OFILES) $(LIBFT) $(MLX)
 	mkdir -p build
 	mkdir -p build/mandatory
 	$(CC) $(OFILES) -o $(NAME) $(CFLAGS) $(INCLUDES)
@@ -48,7 +50,7 @@ $(NAME): $(OFILES)
 $(OFILES): $(CFILES)
 	$(CC) -c $(CFILES) $(CFLAGS)
 
-$(BNAME): $(BOFILES)
+$(BNAME): $(BOFILES) $(LIBFT) $(MLX)
 	$(CC) $(BOFILES) -o $(BNAME) $(CFLAGS) $(INCLUDES)
 
 $(BOFILES): $(BFILES)
@@ -56,11 +58,19 @@ $(BOFILES): $(BFILES)
 	mkdir -p build/bonus
 	$(CC) -c $(BFILES) $(CFLAGS)
 
+$(LIBFT):
+	make all -C ./libft/
+
+$(MLX):
+	make all -C ./minilibx/
+
 clean:
 	rm -f $(OFILES) $(BOFILES)
+	make clean -C ./libft/
 
 fclean: clean
 	rm -f $(NAME) $(BNAME)
+	rm -f $(LIBFT)
 
 re: fclean all
 
