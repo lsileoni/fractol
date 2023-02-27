@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:11 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:31:55 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:36:26 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	mouse_hook(int button, int x, int y, t_app *app)
 					* window->pixel_height);
 			app->params->set->c.r = window->min_width + (app->params->mouse_x
 					* window->pixel_width);
-			paint_pattern(app);
+			paint_set(app);
 		}
 	}
 	return (0);
@@ -54,12 +54,12 @@ int	key_down(int key, t_app *app)
 	if (key == C_KEY)
 	{
 		app->params->color_scheme++;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	if (key == H_KEY)
 	{
 		app->draw_text *= -1;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	if (key == S_KEY)
 	{
@@ -69,7 +69,7 @@ int	key_down(int key, t_app *app)
 			app->params->set->set_type = JULIA;
 		else
 			app->params->set->set_type = MANDELBROT;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	switchboard(key, app);
 	return (0);

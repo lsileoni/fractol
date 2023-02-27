@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:33 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:31:44 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:06:05 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	valid_key(int key)
 {
-	static int	key_values[] = {ESC, I_KEY, C_KEY};
+	static int	key_values[] = {ESC, C_KEY};
 	int			i;
 
 	i = 0;

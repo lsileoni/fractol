@@ -6,29 +6,28 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:48:54 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:07:58 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define KEY_COUNT 3
-# define COLOR_SCHEMES 3
-# define KEY_RANGE 127
-# define BOUNDING_BOX 40.0f
-# define STARTING_ITERATIONS 52
-# define STARTING_VIEW 1.75f
 # include "minilibx_opengl/mlx.h"
 # include "./libft/src/libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# define KEY_COUNT 3
+# define COLOR_SCHEMES 3
+# define KEY_RANGE 127
+# define BOUNDING_BOX 40.0f
+# define STARTING_ITERATIONS 52
+# define STARTING_VIEW 1.75f
 
 enum				e_keys
 {
 	ESC = 53,
-	I_KEY = 34,
 	C_KEY = 8,
 };
 
@@ -48,7 +47,7 @@ enum				e_colors
 {
 	RED_GLOW,
 	GREEN_GLOW,
-	BLUE_GLOW
+	BLUE_GLOW,
 };
 
 typedef struct s_complex
@@ -129,7 +128,7 @@ typedef struct s_app
 	void			*img;
 }					t_app;
 
-void				paint_pattern(t_app *app);
+void				paint_set(t_app *app);
 void				switchboard(int key, t_app *app);
 void				handle_mouse_zoom(int key, t_complex z, t_app *vars);
 void				handle_iterations(int key, t_app *vars);
@@ -149,11 +148,6 @@ int					mouse_pos(int x, int y, t_app *vars);
 int					mouse_hook(int button, int x, int y, t_app *app);
 void				zoom_out_static(t_app *app);
 void				zoom_in_complex(t_app *app, int x, int y);
-t_complex			com_mul(t_complex a, t_complex b);
-t_complex			com_add(t_complex a, t_complex b);
-t_complex			com_abs(t_complex a);
-void				check_modifier_actions(t_app *app, \
-											unsigned char *key_down_flags);
 void				check_mouse_actions(t_app *app);
 double				ft_atod(char *str);
 int					argument_parser(int argc, char **argv, \

@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 07:00:52 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 23:19:18 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:59:35 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ int	argument_parser(int argc, char **argv, t_args *args, t_set *set)
 	}
 	if (!check_two_up(args, argv, argc, set))
 		return (0);
-	if (args->x > 1000)
-		args->x = 1000;
-	if (args->x < 200)
-		args->x = 200;
-	if (args->y > 1000)
-		args->y = 1000;
-	if (args->y < 200)
-		args->y = 200;
+	if (args->x > 1000 || args->x < 200 \
+		|| \
+		args->y > 1000 || args->y < 200)
+	{
+		ft_printf("Resolution provided is wrong!\n");
+		print_help();
+		return (0);
+	}
 	return (1);
 }

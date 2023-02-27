@@ -1,12 +1,12 @@
 CC=cc
 CFLAGS= -Wall -Wextra -Werror -g -march=skylake -Ofast
 INCLUDES=-L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include -L./libft/build/ -lft -lm
+
 CFILES=fractol.c \
 	   switchboard.c \
 	   colorschemes.c \
 	   set_checks.c \
 	   initializations.c \
-	   complex_utilities.c \
 	   hooks.c \
 	   zoom_handlers.c \
 	   paint.c \
@@ -14,6 +14,7 @@ CFILES=fractol.c \
 	   ft_atod.c \
 	   arg_parser.c \
 	   double_parsing.c
+
 BFILES=fractol_bonus.c \
 	   switchboard_bonus.c \
 	   colorboard_bonus.c \
@@ -28,6 +29,7 @@ BFILES=fractol_bonus.c \
 	   ft_atod_bonus.c \
 	   arg_parser_bonus.c \
 	   double_parsing_bonus.c
+
 OFILES=$(CFILES:.c=.o)
 BOFILES=$(BFILES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:00 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:15:46 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:08:26 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	render_frame(t_app *app)
 		return (0);
 	}
 	check_mouse_actions(app);
-	check_modifier_actions(app, key_down);
 	ft_bzero(app->flags, sizeof(t_flags));
 	app->flags->key_down_flags = key_down;
 	return (0);
@@ -74,7 +73,7 @@ int	main(int argc, char **argv)
 	init_framebuffer(&app, &fb);
 	app.fb = &fb;
 	define_hooks(&app);
-	paint_pattern(&app);
+	paint_set(&app);
 	mlx_loop(app.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:00 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:26:30 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:36:38 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	init_framebuffer(&app, &fb);
 	app.fb = &fb;
 	define_hooks(&app);
-	paint_pattern(&app);
+	paint_set(&app);
 	mlx_loop(app.mlx);
 	return (0);
 }

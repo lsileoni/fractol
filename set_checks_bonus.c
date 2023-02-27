@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:28 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:34:11 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:01:38 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ static int	cardioid_check(t_set *set)
 	if (set->c.r * (1 + set->c.r * (8 * set->c.r * set->c.r + \
 					(16 * set->c.i * set->c.i - 3))) + \
 					set->c.i * set->c.i * \
-					(9 * set->c.i * set->c.i - 3) < 3.0 / 32 \
-					|| \
-					((set->c.r + 1) * (set->c.r + 1) + set->c.i * \
-					set->c.i) < 1.0 / 16)
+					(9 * set->c.i * set->c.i - 3) < 3.0 / 32)
+		return (1);
+	if (((set->c.r + 1) * (set->c.r + 1) + set->c.i * set->c.i) < 1.0 / 16)
 		return (1);
 	return (0);
 }

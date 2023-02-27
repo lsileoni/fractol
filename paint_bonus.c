@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:23 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:27:52 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:36:59 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	paint_pixel(t_app *app, t_window *win, \
 					win->y, app->params), fb->pixel, app->params);
 }
 
-void	paint_pattern(t_app *app)
+void	paint_set(t_app *app)
 {
 	t_framebuffer	*fb;
 	t_window		*win;

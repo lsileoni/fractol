@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:25:54 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 20:09:54 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:35:49 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	check_modifier_actions(t_app *app, t_window *win,
 	if (key_down_flags[I_KEY])
 	{
 		app->params->iter_max += 1;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	if (key_down_flags[Z_KEY])
 		zoom_in_static(app, app->params);
 	if (key_down_flags[R_KEY])
 	{
 		reset_view(app, win);
-		paint_pattern(app);
+		paint_set(app);
 	}
 }
 
@@ -48,25 +48,25 @@ void	check_movement_actions(t_app *app, t_window *win,
 	{
 		win->min_width -= 0.1 / app->params->movement_factor;
 		win->max_width -= 0.1 / app->params->movement_factor;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	if (key_down_flags[RIGHT_ARROW])
 	{
 		win->min_width += 0.1 / app->params->movement_factor;
 		win->max_width += 0.1 / app->params->movement_factor;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	if (key_down_flags[UP_ARROW])
 	{
 		win->max_height -= 0.1 / app->params->movement_factor;
 		win->min_height -= 0.1 / app->params->movement_factor;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	if (key_down_flags[DOWN_ARROW])
 	{
 		win->max_height += 0.1 / app->params->movement_factor;
 		win->min_height += 0.1 / app->params->movement_factor;
-		paint_pattern(app);
+		paint_set(app);
 	}
 }
 
@@ -82,6 +82,6 @@ void	check_mouse_actions(t_app *app)
 	if (app->flags->mouse_moved)
 	{
 		if (app->flags->mouse_one_down)
-			paint_pattern(app);
+			paint_set(app);
 	}
 }

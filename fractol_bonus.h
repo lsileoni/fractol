@@ -6,24 +6,24 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:07 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:46:52 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:38:05 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_BONUS_H
 # define FRACTOL_BONUS_H
-# define KEY_COUNT 11
-# define COLOR_SCHEMES 7
-# define KEY_RANGE 127
-# define BOUNDING_BOX 40.0f
-# define STARTING_ITERATIONS 52
-# define STARTING_VIEW 1.75f
 # include "minilibx_opengl/mlx.h"
 # include "./libft/src/libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# define KEY_COUNT 11
+# define COLOR_SCHEMES 7
+# define KEY_RANGE 127
+# define BOUNDING_BOX 40.0f
+# define STARTING_ITERATIONS 52
+# define STARTING_VIEW 1.75f
 
 enum				e_keys
 {
@@ -151,7 +151,7 @@ typedef struct s_app
 typedef void	(*t_fp)(unsigned char c, unsigned int pixel, \
 						unsigned char i, char *b);
 
-void				paint_pattern(t_app *app);
+void				paint_set(t_app *app);
 void				switchboard(int key, t_app *app);
 void				handle_mouse_zoom(int key, t_complex z, t_app *vars);
 void				handle_iterations(int key, t_app *vars);

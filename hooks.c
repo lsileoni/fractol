@@ -6,7 +6,7 @@
 /*   By: lsileoni <lsileoni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:26:11 by lsileoni          #+#    #+#             */
-/*   Updated: 2023/02/22 22:30:46 by lsileoni         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:34:32 by lsileoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	key_down(int key, t_app *app)
 	if (key == C_KEY)
 	{
 		app->params->color_scheme++;
-		paint_pattern(app);
+		paint_set(app);
 	}
 	switchboard(key, app);
 	return (0);
