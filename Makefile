@@ -1,6 +1,6 @@
 CC=cc
 CFLAGS= -Wall -Wextra -Werror -g -march=skylake -Ofast
-INCLUDES=-L./minilibx_opengl/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include -L./libft/build/ -lft -lm
+INCLUDES=-L./minilibx/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include -L./libft/build/ -lft -lm
 
 CFILES=fractol.c \
 	   switchboard.c \
