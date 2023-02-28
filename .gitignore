@@ -1,5 +1,6 @@
 libft/build/libft.a
-minilibx/libmlx.a
+./minilibx/libmlx.a
 fractol
 fractol.dSYM/
 *.o
+minilibx/libmlx.a
