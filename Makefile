@@ -61,7 +61,7 @@ $(BOFILES): $(BFILES)
 $(LIBFT):
 	make all -C ./libft/
 
-$(MLX):
+$(MINILIBX):
 	make all -C ./minilibx/
 
 clean:
@@ -71,6 +71,7 @@ clean:
 fclean: clean
 	rm -f $(NAME) $(BNAME)
 	rm -f $(LIBFT)
+	rm -f $(MINILIBX)
 
 re: fclean all
 
