@@ -1,4 +1,5 @@
-minilibx_opengl/
+libft/build/libft.a
+minilibx/libmlx.a
 fractol
 fractol.dSYM/
 *.o
