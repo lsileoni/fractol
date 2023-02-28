@@ -42,7 +42,7 @@ all: $(NAME)
 
 bonus: $(BNAME)
 
-$(NAME): $(OFILES) $(LIBFT) $(MLX)
+$(NAME): $(OFILES) $(LIBFT) $(MINILIBX)
 	mkdir -p build
 	mkdir -p build/mandatory
 	$(CC) $(OFILES) -o $(NAME) $(CFLAGS) $(INCLUDES)
@@ -50,7 +50,7 @@ $(NAME): $(OFILES) $(LIBFT) $(MLX)
 $(OFILES): $(CFILES)
 	$(CC) -c $(CFILES) $(CFLAGS)
 
-$(BNAME): $(BOFILES) $(LIBFT) $(MLX)
+$(BNAME): $(BOFILES) $(LIBFT) $(MINILIBX)
 	$(CC) $(BOFILES) -o $(BNAME) $(CFLAGS) $(INCLUDES)
 
 $(BOFILES): $(BFILES)
@@ -67,6 +67,7 @@ $(MINILIBX):
 clean:
 	rm -f $(OFILES) $(BOFILES)
 	make clean -C ./libft/
+	make clean -C ./minilibx/
 
 fclean: clean
 	rm -f $(NAME) $(BNAME)
